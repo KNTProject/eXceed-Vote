@@ -81,4 +81,9 @@ public static List<Test> getText(){
 	  
 }
 
+public static void main(String[] args){
+	
+	DBStatements.setText("wasd");
+}
+
 }
