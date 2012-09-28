@@ -11,8 +11,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.tomcat.jni.SSL;
-
 public class SSLMail {
 
 	
@@ -55,7 +53,7 @@ public class SSLMail {
 				
 					 try {
 						             properties.load(stream);          
-						             this.user = properties.getProperty("email");
+						             this.user = properties.getProperty("mailuser");
 						             this.password = properties.getProperty("password");
 
 						         } catch (IOException e) {
@@ -91,7 +89,7 @@ public class SSLMail {
 
 	public static void main(String[] args) {
 		
-		SSLMail.sendMail("cronty@gmail.com", "123qweasd");
+		SSLMail.sendMail("EMAIL", "PASSWORD");
 		
 	}
 	
