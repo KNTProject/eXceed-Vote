@@ -63,9 +63,7 @@ public static List<Test> getText(){
 	        if (l.size() == 0) {
 	            System.out.println("Empty result");
 	            return null;
-	        } else {
-	        	
-	        }
+	        } 
 	        
 	        return l;
 

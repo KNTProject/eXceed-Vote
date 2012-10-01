@@ -4,12 +4,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="test.Test" table="test">
-   <id name="id" type="int" column="id" >
+  <class name="test.Login" table="user">
+   <id name="uid" type="string" column="uid" >
    <generator class="assigned"/>
   </id>
-  <property name="text">
-   <column name="text" />
+  <property name="password">
+   <column name="password" />
   </property>
  </class>
 </hibernate-mapping>

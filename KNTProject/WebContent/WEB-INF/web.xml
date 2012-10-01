@@ -8,8 +8,25 @@
     <servlet-class>test.Controller</servlet-class>
   </servlet>
  
+ 	
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>securedapp</web-resource-name>
+        <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+</security-constraint>
+ 
   <servlet-mapping>
     <servlet-name>exceed</servlet-name>
     <url-pattern>/jsp/addtext</url-pattern>
   </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>exceed</servlet-name>
+    <url-pattern>/jsp/login</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

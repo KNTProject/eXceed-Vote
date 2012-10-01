@@ -6,7 +6,7 @@
 <hibernate-configuration>
 <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/exceed</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.connection.password"></property>
   <property name="hibernate.connection.pool_size">10</property>
@@ -15,5 +15,6 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <!-- Mapping files -->
   <mapping resource="Test.hbm.xml"/>
+  <mapping resource="Login.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>
