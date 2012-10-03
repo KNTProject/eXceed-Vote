@@ -29,4 +29,13 @@
     <url-pattern>/jsp/login</url-pattern>
   </servlet-mapping>
   
+      <servlet-mapping>
+    <servlet-name>exceed</servlet-name>
+    <url-pattern>/jsp/pollchoose</url-pattern>
+  </servlet-mapping>
+  
+        <servlet-mapping>
+    <servlet-name>exceed</servlet-name>
+    <url-pattern>/jsp/vote</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="test.PollChoice" table="pollchoice">
+   <id name="pcid" column="pcid" >
+   <generator class="increment"/>
+  </id>
+  	<property name="pid" column="pid" />
+  	<property name="tid" column="tid" />
+
+ </class>
+</hibernate-mapping>

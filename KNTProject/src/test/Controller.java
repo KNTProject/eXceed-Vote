@@ -33,12 +33,8 @@ public class Controller extends HttpServlet {
       String nextPage = "";
       String todo = request.getParameter("todo");
 
-      if (todo.equals("add")){
-    	  String text = request.getParameter("text");
-    	  DBStatements.setText(text);
-    	  //not sure why I need the project path /knt/ this makes it not very dynamic
-    	  nextPage = "/knt/jsp/test.jsp";
-      } else if (todo.equals("login")){
+
+      if (todo.equals("login")){
     	 
     	  String user = request.getParameter("user");
     	  String password = request.getParameter("password");   	  
@@ -73,7 +69,44 @@ public class Controller extends HttpServlet {
     User userobject = new User();
     userobject.setUid(user);
     session.setAttribute("user", userobject);	 
-    nextPage = "/knt/jsp/login.jsp";
+    nextPage = "/knt/jsp/votemenu.jsp";
+      }
+      
+      if (todo.equals("pollchoose")){
+    	  
+   
+    	  String pollid = request.getParameter("pollid");
+    	  int pid = 0;
+	if(pollid == null){
+		nextPage = "badPID";
+		return;
+	}else
+	{
+    	  try{
+    		  pid = Integer.parseInt(pollid);
+      } catch (Exception e) {
+    	  System.out.println(e);
+    	  nextPage = "badPID";
+    	  return;
+      }
+	}
+	
+	session.setAttribute("pid", pid);
+	nextPage = "/knt/jsp/voting.jsp";
+
+      }
+      if (todo.equals("voteteam")){
+    	  
+    	  int team = Integer.parseInt(request.getParameter("team").toString());
+    	  int pid = Integer.parseInt(session.getAttribute("pid").toString());
+    	  User user = (User) session.getAttribute("user");
+    	  System.out.println(team);
+    	  System.out.println(pid);
+    	  System.out.println(user.getUid());
+
+    	  VoteDAO.insertVote(user.getUid(), pid, team, 1);
+    	  nextPage = "/knt/jsp/votemenu.jsp";
+    	  
       }
 
          response.sendRedirect(nextPage);

@@ -17,8 +17,6 @@ function Check () {
 
 User user = (User) session.getAttribute("user");
 
-
-
 %>
 </head>
 <body>

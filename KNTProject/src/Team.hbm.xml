@@ -4,12 +4,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="test.Test" table="test">
-   <id name="id" type="int" column="id" >
-   <generator class="assigned"/>
+  <class name="test.Team" table="teams">
+   <id name="tid" column="tid" >
+   <generator class="increment"/>
   </id>
-  <property name="text">
-   <column name="text" />
-  </property>
+  	<property name="name" column="name" />
+
  </class>
 </hibernate-mapping>

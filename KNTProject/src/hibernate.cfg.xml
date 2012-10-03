@@ -14,7 +14,10 @@
   <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <!-- Mapping files -->
-  <mapping resource="Test.hbm.xml"/>
   <mapping resource="Login.hbm.xml"/>
+  <mapping resource="Poll.hbm.xml"/>
+  <mapping resource="Team.hbm.xml"/>
+    <mapping resource="PollChoice.hbm.xml"/>
+     <mapping resource="Vote.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>
