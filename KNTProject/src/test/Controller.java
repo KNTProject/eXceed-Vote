@@ -52,8 +52,6 @@ public class Controller extends HttpServlet {
     	  }
     
     	  
- 
-    	  
     	  if(!LoginDAO.checkUser(user)) {
     		  System.out.println("wrong id");
     		  nextPage = "badlogin";

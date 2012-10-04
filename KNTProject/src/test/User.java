@@ -4,6 +4,7 @@ public class User {
 
 	String uid;
 	String typ;
+	
 	public String getUid() {
 		return uid;
 	}
