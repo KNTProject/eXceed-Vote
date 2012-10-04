@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2012 at 09:23 AM
+-- Generation Time: Oct 04, 2012 at 05:46 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -49,7 +49,15 @@ CREATE TABLE IF NOT EXISTS `poll` (
   `description` text NOT NULL,
   `deadline` date NOT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `poll`
+--
+
+INSERT INTO `poll` (`pid`, `name`, `description`, `deadline`) VALUES
+(1, 'test', 'dwasd', '2012-10-03'),
+(2, 'test2', 'tessssst', '2012-10-05');
 
 -- --------------------------------------------------------
 
@@ -58,13 +66,21 @@ CREATE TABLE IF NOT EXISTS `poll` (
 --
 
 CREATE TABLE IF NOT EXISTS `pollchoice` (
-  `pcid` int(11) NOT NULL,
+  `pcid` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL,
   `tid` int(11) NOT NULL,
   PRIMARY KEY (`pcid`),
   KEY `pid` (`pid`),
   KEY `tid` (`tid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `pollchoice`
+--
+
+INSERT INTO `pollchoice` (`pcid`, `pid`, `tid`) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -73,10 +89,18 @@ CREATE TABLE IF NOT EXISTS `pollchoice` (
 --
 
 CREATE TABLE IF NOT EXISTS `teams` (
-  `tid` int(11) NOT NULL DEFAULT '0',
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`tid`, `name`) VALUES
+(1, 'team1'),
+(2, 'team2');
 
 -- --------------------------------------------------------
 
@@ -88,7 +112,14 @@ CREATE TABLE IF NOT EXISTS `types` (
   `tyip` int(11) NOT NULL AUTO_INCREMENT,
   `typ` varchar(50) NOT NULL,
   PRIMARY KEY (`tyip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `types`
+--
+
+INSERT INTO `types` (`tyip`, `typ`) VALUES
+(1, 'student');
 
 -- --------------------------------------------------------
 
@@ -97,13 +128,20 @@ CREATE TABLE IF NOT EXISTS `types` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `uid` int(11) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `uid` varchar(20) NOT NULL,
+  `password` varchar(103) NOT NULL,
   `tyid` int(11) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `kid` (`uid`),
   KEY `tyid` (`tyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`uid`, `password`, `tyid`) VALUES
+('123', '1000:aba667a93ff3d6621d5d761c4d4179e218b16fec671061bb:89c51cff2ae8337ac4d3dfd039ce61b35568d404e77db68f', 1);
 
 -- --------------------------------------------------------
 
@@ -114,12 +152,25 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `votes` (
   `vid` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
+  `uid` varchar(20) NOT NULL,
+  `tid` int(11) NOT NULL,
   `votes` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`vid`),
   KEY `pcid` (`pid`,`uid`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `uid` (`uid`),
+  KEY `tid` (`tid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `votes`
+--
+
+INSERT INTO `votes` (`vid`, `pid`, `uid`, `tid`, `votes`) VALUES
+(1, 1, '123', 1, 1),
+(2, 1, '123', 2, 1),
+(3, 1, '123', 1, 1),
+(4, 1, '123', 2, 1),
+(5, 1, '123', 1, 1);
 
 --
 -- Constraints for dumped tables
@@ -129,15 +180,15 @@ CREATE TABLE IF NOT EXISTS `votes` (
 -- Constraints for table `maxvote`
 --
 ALTER TABLE `maxvote`
-  ADD CONSTRAINT `maxvote_ibfk_2` FOREIGN KEY (`tyid`) REFERENCES `types` (`tyip`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `maxvote_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `poll` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `maxvote_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `poll` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `maxvote_ibfk_2` FOREIGN KEY (`tyid`) REFERENCES `types` (`tyip`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pollchoice`
 --
 ALTER TABLE `pollchoice`
-  ADD CONSTRAINT `pollchoice_ibfk_2` FOREIGN KEY (`tid`) REFERENCES `teams` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pollchoice_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `poll` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pollchoice_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `poll` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pollchoice_ibfk_2` FOREIGN KEY (`tid`) REFERENCES `teams` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
@@ -150,7 +201,8 @@ ALTER TABLE `user`
 --
 ALTER TABLE `votes`
   ADD CONSTRAINT `votes_ibfk_3` FOREIGN KEY (`pid`) REFERENCES `poll` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `votes_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `votes_ibfk_4` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `votes_ibfk_5` FOREIGN KEY (`tid`) REFERENCES `teams` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
