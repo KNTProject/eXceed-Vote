@@ -1,5 +1,10 @@
 package knt.exceedvote.model;
 
+/**
+ * Model for Poll Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class Poll {
 
 	private int pid;

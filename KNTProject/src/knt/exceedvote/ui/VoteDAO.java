@@ -41,6 +41,7 @@ public class VoteDAO {
 		  try{
 			  
 			// This step will read hibernate.cfg.xml and prepare hibernate for use
+			@SuppressWarnings("deprecation")
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			session =sessionFactory.openSession();
 			

@@ -1,5 +1,10 @@
 package knt.exceedvote.model;
 
+/**
+ * Model for Team Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class Team {
 
 	int tid;

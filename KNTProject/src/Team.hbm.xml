@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="knt.exceedvote.com.Team" table="teams">
+  <class name="knt.exceedvote.model.Team" table="teams">
    <id name="tid" column="tid" >
    <generator class="increment"/>
   </id>

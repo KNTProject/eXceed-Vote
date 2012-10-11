@@ -4,11 +4,17 @@ import java.util.List;
 
 import knt.exceedvote.model.Team;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * Model for Team Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class TeamDAO {
 
 	
@@ -34,7 +40,8 @@ public class TeamDAO {
 			return team;
 
 			  }catch(Exception e){
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( TeamDAO.class );
+				  log.error(e);
 			  return null;
 			  
 			  }finally{

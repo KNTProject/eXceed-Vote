@@ -1,0 +1,7 @@
+This is eXceed vote project.
+
+To run:
+1. use .war file
+2. import in tomcat
+3. import db file
+4. run at http://localhost:8080/knt/

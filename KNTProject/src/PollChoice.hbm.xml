@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="knt.exceedvote.com.PollChoice" table="pollchoice">
+  <class name="knt.exceedvote.model.PollChoice" table="pollchoice">
    <id name="pcid" column="pcid" >
    <generator class="increment"/>
   </id>

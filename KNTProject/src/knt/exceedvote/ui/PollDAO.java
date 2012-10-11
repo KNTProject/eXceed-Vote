@@ -4,11 +4,17 @@ import java.util.List;
 
 import knt.exceedvote.model.Poll;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * Model for Poll Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class PollDAO {
 
 	
@@ -39,7 +45,8 @@ public class PollDAO {
 			return polls;
 
 			  }catch(Exception e){
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( PollDAO.class );
+				  log.error(e);
 			  return null;
 			  
 			  }finally{

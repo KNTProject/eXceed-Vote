@@ -1,5 +1,11 @@
 package knt.exceedvote.model;
 
+
+/**
+ * Model for Vote Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class Vote {
 
 	int vid;

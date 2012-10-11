@@ -19,6 +19,11 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * DAO for Login Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class LoginDAO {
 
 public static boolean checkUser(String uid){

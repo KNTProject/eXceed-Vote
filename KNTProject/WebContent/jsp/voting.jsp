@@ -1,4 +1,4 @@
-<%@page import="knt.exceedvote.ui.*" import="java.util.List"%>
+<%@page import="knt.exceedvote.ui.*" import="knt.exceedvote.model.*" import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>

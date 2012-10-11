@@ -2,6 +2,9 @@ package knt.exceedvote.ui;
 
 import java.util.List;
 
+import knt.exceedvote.model.PollChoice;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -43,7 +46,8 @@ public class PollChoiceDAO {
 			return teams;
 
 			  }catch(Exception e){
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( PollChoiceDAO.class );
+				  log.error(e);
 			  return null;
 			  
 			  }finally{

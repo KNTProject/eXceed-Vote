@@ -5,7 +5,7 @@
    version="2.5">
   <servlet>
     <servlet-name>exceed</servlet-name>
-    <servlet-class>knt.exceedvote.com.Controller</servlet-class>
+    <servlet-class>knt.exceedvote.controller.Controller</servlet-class>
   </servlet>
  
  	

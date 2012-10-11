@@ -10,10 +10,22 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+/**
+ * Send mails over SSL
+ * @author Thomas Raudenbusch
+ *
+ */
 public class SSLMail {
 
-	
+/**
+ * Send a mail over SSL	
+ * @param recevier
+ * is the email adress or loginid
+ * @param password
+ * password is for a register type otherwise it is null
+ * @param type
+ * type is the type of email example registration
+ */
 	public static void sendMail(String recevier, String password, String type){
 		
 		InputStream stream = SSLMail.class.getResourceAsStream( "mail.properties" );

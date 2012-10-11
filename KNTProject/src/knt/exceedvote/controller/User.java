@@ -1,5 +1,10 @@
 package knt.exceedvote.controller;
 
+/**
+ * User session for a website
+ * @author Thomas Raudenbusch
+ *
+ */
 public class User {
 
 	String uid;

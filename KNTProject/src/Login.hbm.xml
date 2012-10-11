@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="knt.exceedvote.com.Login" table="user">
+  <class name="knt.exceedvote.model.Login" table="user">
    <id name="uid" type="string" column="uid" >
    <generator class="assigned"/>
   </id>

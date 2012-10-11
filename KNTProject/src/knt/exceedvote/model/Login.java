@@ -1,5 +1,10 @@
 package knt.exceedvote.model;
 
+/**
+ * Model for Login Object
+ * @author Thomas Raudenbusch
+ *
+ */
 public class Login {
 
 	  private String password;
