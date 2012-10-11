@@ -2,9 +2,9 @@ package knt.exceedvote.com;
 
 public class Poll {
 
-	int pid;
-	String name;
-	String description;
+	private int pid;
+	private String name;
+	private String description;
 
 	public int getPid() {
 		return pid;
