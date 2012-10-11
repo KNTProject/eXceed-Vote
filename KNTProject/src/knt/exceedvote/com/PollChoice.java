@@ -2,9 +2,9 @@ package knt.exceedvote.com;
 
 public class PollChoice {
 
-	int pcid;
-	int pid;
-	int tid;
+	private int pcid;
+	private int pid;
+	private int tid;
 	
 	public int getPcid() {
 		return pcid;
