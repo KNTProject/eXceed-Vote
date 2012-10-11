@@ -46,6 +46,19 @@ public class JUnit4 {
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
+	  @Test
+	  public final void inputVote() {
+	    System.out.println("-- Testing method insertVote(), "
+	        + "setTyp and getUid, getTyp --");
+	    final String uid = "123";
+	    final int pid = 1;
+	    final int tid = 1;
+	    final int votes = 1;
+
+	    assertEquals(true, VoteDAO.insertVote(uid, pid, tid, votes));
+	    System.out.println("-- Test ended successfull --");
+	  }
+	  
 	  
 	  
 }
