@@ -9,9 +9,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+/*
+ * This class is to test for functionality.
+ */
 public class JUnit4 {
 
-
+	/*
+	 * This method is use to test for id and password setting
+	 * 
+	 */
 	  @Test
 	  public final void testUser() {
 	    System.out.println("-- Testing method setUid, "
@@ -27,6 +33,10 @@ public class JUnit4 {
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
+	  /*
+	   * To test whether user id is exist in
+	   * the system or not.
+	   */
 	  @Test
 	  public final void testUserReal() {
 	    System.out.println("-- Testing method setUid, "
@@ -38,6 +48,10 @@ public class JUnit4 {
 	  }
 	  
 	
+	  /*
+	   * To test whether user is able
+	   * to login or not.
+	   */
 	  @Test
 	  public final void testLogin() {
 	    System.out.println("-- Testing method setUid, "
@@ -49,6 +63,10 @@ public class JUnit4 {
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
+	  /*
+	   * To test that user is able to vote
+	   * and the system records the vote score.
+	   */
 	  @Test
 	  public final void inputVote() {
 	    System.out.println("-- Testing method insertVote(), "
