@@ -1,4 +1,4 @@
-package test;
+package knt.exceedvote.com;
 
 
 import org.junit.AfterClass;

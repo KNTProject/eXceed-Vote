@@ -1,4 +1,4 @@
-package test;
+package knt.exceedvote.com;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 public class SSLMail {
 
 	
-	public static void sendMail(String recevier, String password){
+	public static void sendMail(String recevier, String password, String type){
 		
 		InputStream stream = SSLMail.class.getResourceAsStream( "mail.properties" );
 		Properties properties = new Properties();
@@ -65,18 +65,30 @@ public class SSLMail {
 				}
 			});
  
+		if (type.equals("register")){
+			String mailpath = null;
+			try {
+				properties.load(stream);
+				mailpath = properties.getProperty("mailpath");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}   
+			
 		try {
- 
+                   
+
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("system@no-spam.com"));
+			
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(recevier));
-			message.setSubject("Testing Subject");
+					InternetAddress.parse(recevier + mailpath));
+			message.setSubject("eXceed Vote Registration");
 			message.setText("Dear User," +
-					"\n\n This is a TEST Msg!" +
+					"\n\n This is a message for eXceed Vote registration!" +
 					"\n\n Your password is: " + password + 
-					"\n\n At your first login you must change the password." +
-					"\n\n Maybe add a URL here: (URL)");
+					"\n\n At your first login you must change the password!" +
+					"\n\n Thanks!");
  
 			Transport.send(message);
  
@@ -86,11 +98,7 @@ public class SSLMail {
 			throw new RuntimeException(e);
 		}
 	}
-
-	public static void main(String[] args) {
-		
-		SSLMail.sendMail("EMAIL", "PASSWORD");
-		
 	}
+
 	
 }

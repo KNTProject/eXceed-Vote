@@ -20,18 +20,19 @@ User user = (User) session.getAttribute("user");
 %>
 </head>
 <body>
-eXceed Vote Login <br><br>
+eXceed Vote Register <br><br>
 
 
-      <form name="login" action="login" method="POST">
-         <input type="hidden" name="todo" value="login">
+      <form name="register" action="register" method="POST">
+         <input type="hidden" name="todo" value="register">
          
-User:<input type="text" name="user" /> <br><br>
-Password:<input type="password" name="password" />
+KU User ID:<input type="text" name="kuid" /> <br><br>
 <br>
-        <input type="submit" onClick="Check()" value="Login">
+        <input type="submit" value="Register">
       </form>
       <br>
-<a href="register.jsp">Registration</a>
+You receive a password for your login.
+<br>
+<a href="login.jsp">back</a>
 </body>
 </html>

@@ -4,12 +4,13 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="test.Login" table="user">
+  <class name="knt.exceedvote.com.Login" table="user">
    <id name="uid" type="string" column="uid" >
    <generator class="assigned"/>
   </id>
-  <property name="password">
-   <column name="password" />
-  </property>
+    	<property name="firstlogin" column="firstlogin" />
+    	<property name="password" column="password" />
+    	<property name="tyid" column="tyid" />
+    	
  </class>
 </hibernate-mapping>

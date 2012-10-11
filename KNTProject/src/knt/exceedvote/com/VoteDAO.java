@@ -1,19 +1,33 @@
-package test;
+package knt.exceedvote.com;
 
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
+
+/**
+ * Class for put a vote into the database
+ * @author Thomas Raudenbusch
+ *
+ */
 
 public class VoteDAO {
 
-	
-	public static void insertVote(String uid, int pid, int tid, int votes){
-		
-		
+	/**
+	 * Methode that put a new vote into the db
+	 * @param uid
+	 * Is the ID of the User
+	 * @param pid
+	 * Is the ID of the Poll
+	 * @param tid
+	 * Is the ID of the Team
+	 * @param votes
+	 * Is the amount of Votes smbdy give a team
+	 * @return
+	 * return true when input was okay, return false if smth goes wrong
+	 */
+	public static boolean insertVote(String uid, int pid, int tid, int votes){
 
 		  Session session = null;
 
@@ -32,31 +46,20 @@ public class VoteDAO {
 			transaction = session.beginTransaction();
 			session.save(newVote);
 			transaction.commit();
-
-
+			return true;
 
 			  }catch(Exception e){
+			  //Must be smth better
 			  System.out.println(e.getMessage());
+			  return false;
 			  
 			  }finally{
-			  // Actual contact insertion will happen at this step
+			  // Close connection
 			  session.flush();
 			  session.close();
 			  
 			  }
-		
-		
-	}
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		
-		VoteDAO.insertVote("123", 1, 1, 1);
-		
 	}
 
 }

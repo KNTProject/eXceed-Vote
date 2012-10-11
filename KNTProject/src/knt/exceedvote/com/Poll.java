@@ -1,6 +1,4 @@
-package test;
-
-import sun.util.calendar.LocalGregorianCalendar.Date;
+package knt.exceedvote.com;
 
 public class Poll {
 

@@ -5,7 +5,7 @@
    version="2.5">
   <servlet>
     <servlet-name>exceed</servlet-name>
-    <servlet-class>test.Controller</servlet-class>
+    <servlet-class>knt.exceedvote.com.Controller</servlet-class>
   </servlet>
  
  	
@@ -37,5 +37,10 @@
         <servlet-mapping>
     <servlet-name>exceed</servlet-name>
     <url-pattern>/jsp/vote</url-pattern>
+  </servlet-mapping>
+     <servlet-mapping>
+     
+    <servlet-name>exceed</servlet-name>
+    <url-pattern>/jsp/register</url-pattern>
   </servlet-mapping>
 </web-app>

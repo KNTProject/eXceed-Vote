@@ -1,6 +1,5 @@
-package test;
+package knt.exceedvote.com;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;

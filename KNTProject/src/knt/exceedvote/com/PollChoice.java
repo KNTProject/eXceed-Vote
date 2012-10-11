@@ -1,4 +1,4 @@
-package test;
+package knt.exceedvote.com;
 
 public class PollChoice {
 

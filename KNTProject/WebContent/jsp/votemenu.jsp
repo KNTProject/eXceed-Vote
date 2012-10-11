@@ -1,4 +1,4 @@
-<%@page import="test.PollDAO" import="test.Poll" import="java.util.List"%>
+<%@page import="knt.exceedvote.com.PollDAO" import="knt.exceedvote.com.Poll" import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>

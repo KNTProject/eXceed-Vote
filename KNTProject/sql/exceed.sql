@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `poll` (
 --
 
 INSERT INTO `poll` (`pid`, `name`, `description`, `deadline`) VALUES
-(1, 'test', 'dwasd', '2012-10-03'),
+(1, 'knt.exceedvote.com', 'dwasd', '2012-10-03'),
 (2, 'test2', 'tessssst', '2012-10-05');
 
 -- --------------------------------------------------------

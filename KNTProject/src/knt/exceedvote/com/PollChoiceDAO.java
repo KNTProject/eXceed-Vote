@@ -1,4 +1,4 @@
-package test;
+package knt.exceedvote.com;
 
 import java.util.List;
 
@@ -7,9 +7,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * Class to handle the details for one Poll from the Database
+ * Its the DAO for PollChoice.java
+ * @author Thomas Raudenbusch
+ *
+ */
 public class PollChoiceDAO {
 
-	
+	/**
+	 * The method gets one Poll from the database
+	 * @param pid
+	 * the Poll ID which is stored at the db
+	 * @return
+	 * All data from this Poll ID which is stored in the db
+	 */
 	public static List<PollChoice> getChoices(int pid){
 
 		  Session session = null;
@@ -42,20 +54,5 @@ public class PollChoiceDAO {
 			  }
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		List<PollChoice> teams = PollChoiceDAO.getChoices(1);
-		for (PollChoice p : teams){
-			System.out.println(p.pcid);
-			System.out.println(p.pid);
-			System.out.println(p.tid);
-
-		}
-		
-	}
 
 }
