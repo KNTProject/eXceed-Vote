@@ -1,10 +1,15 @@
-package knt.exceedvote.com;
+package knt.exceedvote.ui;
 
 
+import knt.exceedvote.model.Vote;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+
 
 /**
  * Class for put a vote into the database
@@ -54,8 +59,10 @@ public class VoteDAO {
 			return true;
 
 			  }catch(Exception e){
-			  //Must be smth better
-			  System.out.println(e.getMessage());
+
+			  Logger log = Logger.getLogger( VoteDAO.class );
+			  log.error(e);
+			  
 			  return false;
 			  
 			  }finally{

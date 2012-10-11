@@ -1,5 +1,8 @@
-package knt.exceedvote.com;
+package knt.exceedvote.controller;
 
+
+import knt.exceedvote.ui.LoginDAO;
+import knt.exceedvote.ui.VoteDAO;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

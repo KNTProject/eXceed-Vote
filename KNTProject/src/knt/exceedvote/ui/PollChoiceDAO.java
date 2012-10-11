@@ -1,4 +1,4 @@
-package knt.exceedvote.com;
+package knt.exceedvote.ui;
 
 import java.util.List;
 
@@ -7,11 +7,22 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-public class TeamDAO {
+/**
+ * Class to handle the details for one Poll from the Database
+ * Its the DAO for PollChoice.java
+ * @author Thomas Raudenbusch
+ *
+ */
+public class PollChoiceDAO {
 
-	
-
-	public static List<Team> getTeam(int tid){
+	/**
+	 * The method gets one Poll from the database
+	 * @param pid
+	 * the Poll ID which is stored at the db
+	 * @return
+	 * All data from this Poll ID which is stored in the db
+	 */
+	public static List<PollChoice> getChoices(int pid){
 
 		  Session session = null;
 
@@ -24,12 +35,12 @@ public class TeamDAO {
 			
 			  //Create new instance of Contact and set values in it by reading them from form object
 
-				 List<Team> team = session.createCriteria(Team.class)
-						 .add(Restrictions.like("tid", tid))
+				 List<PollChoice> teams = session.createCriteria(PollChoice.class)
+						 .add(Restrictions.like("pid", pid))
 						 .list();
 				
 			
-			return team;
+			return teams;
 
 			  }catch(Exception e){
 			  System.out.println(e.getMessage());
@@ -42,21 +53,6 @@ public class TeamDAO {
 			  
 			  }
 	}
-
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		List<Team> t = TeamDAO.getTeam(1);
-		for (Team tt : t){
-			
-			System.out.println(tt.name);
-			
-		}
-		
-	}
 
 }

@@ -1,4 +1,4 @@
-package knt.exceedvote.com;
+package knt.exceedvote.controller;
 
 import java.io.IOException;
 import java.io.InputStream;

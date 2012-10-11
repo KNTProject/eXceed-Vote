@@ -1,4 +1,4 @@
-package knt.exceedvote.com;
+package knt.exceedvote.controller;
 
 
 import java.io.*;
@@ -8,6 +8,9 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
+import knt.exceedvote.ui.LoginDAO;
+import knt.exceedvote.ui.VoteDAO;
 
 /**
  * This class is the Controller which handels the requests and returns from jsp pages

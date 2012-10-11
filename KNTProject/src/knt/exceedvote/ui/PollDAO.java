@@ -1,6 +1,8 @@
-package knt.exceedvote.com;
+package knt.exceedvote.ui;
 
 import java.util.List;
+
+import knt.exceedvote.model.Poll;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

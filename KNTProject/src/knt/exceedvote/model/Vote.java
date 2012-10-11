@@ -1,4 +1,4 @@
-package knt.exceedvote.com;
+package knt.exceedvote.model;
 
 public class Vote {
 
