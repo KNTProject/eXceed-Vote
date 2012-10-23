@@ -5,31 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>eXceed Vote Login</title>
-<script type="text/javascript">
-function Check () {
+<title>eXceed Vote First Login</title>
 
-	
-	
-}
-</script>
-<%
-	UserSession user = (UserSession) session.getAttribute("user");
-%>
 </head>
 <body>
 eXceed Vote Login <br><br>
 
 
       <form name="login" action="login" method="POST">
-         <input type="hidden" name="todo" value="login">
+         <input type="hidden" name="todo" value="changepw">
          
-User:<input type="text" name="user" /> <br><br>
-Password:<input type="password" name="password" />
+New Password:<input type="password" name="password" /> <br><br>
+
 <br>
-        <input type="submit" onClick="Check()" value="Login">
+        <input type="submit" value="Set password and login">
       </form>
-      <br>
-<a href="register.jsp">Registration</a>
+
 </body>
 </html>

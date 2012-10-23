@@ -1,12 +1,12 @@
-package knt.exceedvote.ui;
+package knt.exceedvote.dao;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
 
-import knt.exceedvote.controller.PasswordHash;
-import knt.exceedvote.controller.SSLMail;
 import knt.exceedvote.model.Login;
+import knt.exceedvote.system.PasswordHash;
+import knt.exceedvote.system.SSLMail;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,7 +24,7 @@ import org.hibernate.criterion.Restrictions;
  * @author Thomas Raudenbusch
  *
  */
-public class LoginDAO {
+public class UserDAO {
 
 public static boolean checkUser(String uid){
 	
@@ -64,6 +64,11 @@ public static boolean checkUser(String uid){
 		  }
 
   }
+
+	//Not implemented yet !!
+	public static boolean changePassword(String uid, String password){
+		return true;
+	}
   
 	  public static boolean checkpassword(String uid, String password){
   

@@ -1,8 +1,8 @@
-package knt.exceedvote.ui;
+package knt.exceedvote.dao;
 
 import java.util.List;
 
-import knt.exceedvote.model.Poll;
+import knt.exceedvote.model.Team;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -11,15 +11,15 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
 /**
- * Model for Poll Object
+ * Model for Team Object
  * @author Thomas Raudenbusch
  *
  */
-public class PollDAO {
+public class TeamDAO {
 
 	
-	
-	public static List<Poll> getPolls(Integer pid){
+
+	public static List<Team> getTeam(int tid){
 
 		  Session session = null;
 
@@ -31,21 +31,16 @@ public class PollDAO {
 			
 			
 			  //Create new instance of Contact and set values in it by reading them from form object
-			List<Poll> polls;
-			if (pid == null) {
-			 polls = session.createCriteria(Poll.class)
-					 .list();
-			}
-			else {
-				 polls = session.createCriteria(Poll.class)
-						 .add(Restrictions.like("pid", pid))
+
+				 List<Team> team = session.createCriteria(Team.class)
+						 .add(Restrictions.like("tid", tid))
 						 .list();
-				}	
+				
 			
-			return polls;
+			return team;
 
 			  }catch(Exception e){
-				  Logger log = Logger.getLogger( PollDAO.class );
+				  Logger log = Logger.getLogger( TeamDAO.class );
 				  log.error(e);
 			  return null;
 			  
@@ -55,9 +50,8 @@ public class PollDAO {
 			  session.close();
 			  
 			  }
-
-		
 	}
 
+	
 
 }

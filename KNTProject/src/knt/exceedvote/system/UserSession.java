@@ -1,11 +1,11 @@
-package knt.exceedvote.controller;
+package knt.exceedvote.system;
 
 /**
- * User session for a website
+ * UserSession session for a website
  * @author Thomas Raudenbusch
  *
  */
-public class User {
+public class UserSession {
 
 	String uid;
 	String typ;

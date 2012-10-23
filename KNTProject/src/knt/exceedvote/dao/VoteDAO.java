@@ -1,4 +1,4 @@
-package knt.exceedvote.ui;
+package knt.exceedvote.dao;
 
 
 import knt.exceedvote.model.Vote;
@@ -21,9 +21,9 @@ import org.hibernate.cfg.Configuration;
 public class VoteDAO {
 
 	/**
-	 * Methode that put a new vote into the db
+	 * Method that put a new vote into the db
 	 * @param uid
-	 * Is the ID of the User
+	 * Is the ID of the UserSession
 	 * @param pid
 	 * Is the ID of the Poll
 	 * @param tid

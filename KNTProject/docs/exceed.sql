@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2012 at 05:46 AM
+-- Generation Time: Oct 23, 2012 at 12:12 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `exceed`
 --
+CREATE DATABASE `exceed` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `exceed`;
 
 -- --------------------------------------------------------
 
@@ -51,13 +53,6 @@ CREATE TABLE IF NOT EXISTS `poll` (
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `poll`
---
-
-INSERT INTO `poll` (`pid`, `name`, `description`, `deadline`) VALUES
-(1, 'knt.exceedvote.com', 'dwasd', '2012-10-03'),
-(2, 'test2', 'tessssst', '2012-10-05');
 
 -- --------------------------------------------------------
 
@@ -131,17 +126,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `uid` varchar(20) NOT NULL,
   `password` varchar(103) NOT NULL,
   `tyid` int(11) NOT NULL,
+  `firstlogin` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `kid` (`uid`),
   KEY `tyid` (`tyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`uid`, `password`, `tyid`) VALUES
-('123', '1000:aba667a93ff3d6621d5d761c4d4179e218b16fec671061bb:89c51cff2ae8337ac4d3dfd039ce61b35568d404e77db68f', 1);
 
 -- --------------------------------------------------------
 
@@ -159,18 +149,9 @@ CREATE TABLE IF NOT EXISTS `votes` (
   KEY `pcid` (`pid`,`uid`),
   KEY `uid` (`uid`),
   KEY `tid` (`tid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
---
--- Dumping data for table `votes`
---
 
-INSERT INTO `votes` (`vid`, `pid`, `uid`, `tid`, `votes`) VALUES
-(1, 1, '123', 1, 1),
-(2, 1, '123', 2, 1),
-(3, 1, '123', 1, 1),
-(4, 1, '123', 2, 1),
-(5, 1, '123', 1, 1);
 
 --
 -- Constraints for dumped tables

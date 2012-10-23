@@ -1,8 +1,9 @@
-package knt.exceedvote.controller;
+package knt.exceedvote.test;
 
 
-import knt.exceedvote.ui.LoginDAO;
-import knt.exceedvote.ui.VoteDAO;
+import knt.exceedvote.dao.UserDAO;
+import knt.exceedvote.dao.VoteDAO;
+import knt.exceedvote.system.UserSession;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -24,11 +25,11 @@ public class JUnit4 {
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "12345";
 	    final String typ = "student";
-	    User user = new User();
-	    user.setUid(uid);
-	    user.setTyp(typ);
-	    assertEquals("12345", user.getUid());
-	    assertEquals("student", user.getTyp());
+	    UserSession userSession = new UserSession();
+	    userSession.setUid(uid);
+	    userSession.setTyp(typ);
+	    assertEquals("12345", userSession.getUid());
+	    assertEquals("student", userSession.getTyp());
 
 	    System.out.println("-- Test ended successfull --");
 	  }
@@ -43,7 +44,7 @@ public class JUnit4 {
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "123";
 
-	    assertEquals(true, LoginDAO.checkUser(uid));
+	    assertEquals(true, UserDAO.checkUser(uid));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
@@ -59,7 +60,7 @@ public class JUnit4 {
 	    final String uid = "123";
 	    final String pw = "wda";
 
-	    assertEquals(true, LoginDAO.checkpassword(uid, pw));
+	    assertEquals(true, UserDAO.checkpassword(uid, pw));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  

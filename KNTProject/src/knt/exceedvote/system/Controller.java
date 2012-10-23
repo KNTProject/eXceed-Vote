@@ -1,4 +1,4 @@
-package knt.exceedvote.controller;
+package knt.exceedvote.system;
 
 
 import java.io.*;
@@ -9,8 +9,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import knt.exceedvote.ui.LoginDAO;
-import knt.exceedvote.ui.VoteDAO;
+import knt.exceedvote.dao.UserDAO;
+import knt.exceedvote.dao.VoteDAO;
 
 /**
  * This class is the Controller which handels the requests and returns from jsp pages
@@ -64,28 +64,39 @@ public class Controller extends HttpServlet {
 
     	  if (user.endsWith(" ")){
     		  user = user.substring(0, user.length() - 1);
-    		  System.out.println(user);
+
     	  }
     
     	  
-    	  if(!LoginDAO.checkUser(user)) {
+    	  if(!UserDAO.checkUser(user)) {
     		  System.out.println("wrong id");
     		  nextPage = "/knt/jsp/login.jsp";
     		  response.sendRedirect(nextPage);
     		  return;
     	  }
-    	  if(!LoginDAO.checkpassword(user, password)){
+    	  if(!UserDAO.checkpassword(user, password)){
     		  System.out.println("wrong pw");
     		  nextPage = "/knt/jsp/login.jsp";
     		  response.sendRedirect(nextPage);
     		  return;  
     	  }
-    User userobject = new User();
+    	  if(UserDAO.checkFirstlogin(user)){
+    		  System.out.println("first login");
+    		  nextPage = "/knt/jsp/changepw.jsp";
+    		  response.sendRedirect(nextPage);
+    		  return;
+    	  }
+    UserSession userobject = new UserSession();
     userobject.setUid(user);
     session.setAttribute("user", userobject);	 
     nextPage = "/knt/jsp/votemenu.jsp";
       }
 
+      //Not implemented yet !!
+      if(todo.equals("changepw")){
+    	  request.getParameter("password");
+    	  nextPage = "/knt/jsp/votemenu.jsp"; 
+      }
       //Handle the choose of a poll
       if (todo.equals("pollchoose")){
     	  
@@ -116,10 +127,10 @@ public class Controller extends HttpServlet {
     	  
     	  int team = Integer.parseInt(request.getParameter("team").toString());
     	  int pid = Integer.parseInt(session.getAttribute("pid").toString());
-    	  User user = (User) session.getAttribute("user");
+    	  UserSession userSession = (UserSession) session.getAttribute("user");
 
 
-    	  if(VoteDAO.insertVote(user.getUid(), pid, team, 1)) {
+    	  if(VoteDAO.insertVote(userSession.getUid(), pid, team, 1)) {
     	  nextPage = "/knt/jsp/votemenu.jsp";
     	  } else {
     		  nextPage = "/knt/jsp/voting.jsp";
@@ -133,7 +144,7 @@ public class Controller extends HttpServlet {
       if (todo.equals("register")){
 	
 	String kuid = request.getParameter("kuid");
-	LoginDAO.insertUser(kuid);
+	UserDAO.insertUser(kuid);
 	nextPage = "login.jsp";
 	
 }

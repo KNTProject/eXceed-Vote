@@ -1,4 +1,4 @@
-package knt.exceedvote.controller;
+package knt.exceedvote.system;
 
 import java.security.SecureRandom;
 import javax.crypto.spec.PBEKeySpec;

@@ -1,10 +1,5 @@
 package knt.exceedvote.model;
 
-/**
- * Model for PollChoice Object
- * @author Thomas Raudenbusch
- *
- */
 public class PollChoice {
 
 	private int pcid;

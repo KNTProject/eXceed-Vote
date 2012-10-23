@@ -1,4 +1,4 @@
-package knt.exceedvote.controller;
+package knt.exceedvote.system;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,7 +96,7 @@ public class SSLMail {
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(recevier + mailpath));
 			message.setSubject("eXceed Vote Registration");
-			message.setText("Dear User," +
+			message.setText("Dear UserSession," +
 					"\n\n This is a message for eXceed Vote registration!" +
 					"\n\n Your password is: " + password + 
 					"\n\n At your first login you must change the password!" +
