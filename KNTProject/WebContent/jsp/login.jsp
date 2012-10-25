@@ -6,13 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>eXceed Vote Login</title>
-<script type="text/javascript">
-function Check () {
 
-	
-	
-}
-</script>
 <%
 	UserSession user = (UserSession) session.getAttribute("user");
 %>

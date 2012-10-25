@@ -69,14 +69,6 @@ CREATE TABLE IF NOT EXISTS `pollchoice` (
   KEY `tid` (`tid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `pollchoice`
---
-
-INSERT INTO `pollchoice` (`pcid`, `pid`, `tid`) VALUES
-(1, 1, 1),
-(2, 1, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -88,14 +80,6 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `teams`
---
-
-INSERT INTO `teams` (`tid`, `name`) VALUES
-(1, 'team1'),
-(2, 'team2');
 
 -- --------------------------------------------------------
 
