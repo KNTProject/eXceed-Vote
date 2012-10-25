@@ -1,7 +1,9 @@
 package knt.exceedvote.dao;
 
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 import knt.exceedvote.model.Login;
@@ -64,11 +66,6 @@ public static boolean checkUser(String uid){
 		  }
 
   }
-
-	//Not implemented yet !!
-	public static boolean changePassword(String uid, String password){
-		return true;
-	}
   
 	  public static boolean checkpassword(String uid, String password){
   
@@ -141,7 +138,46 @@ public static boolean checkUser(String uid){
 			  }
 	  }
 	
+	  public static boolean updatetUser(String uid, String password){
 
+		  Session session = null;
+
+		  try{
+			  // This step will read hibernate.cfg.xml and prepare hibernate for use
+
+			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			session =sessionFactory.openSession();
+			
+
+			Login newUser = new Login();
+			newUser.setUid(uid);
+			newUser.setPassword(PasswordHash.createHash(password));
+			newUser.setTyid(1);
+			newUser.setFirstlogin(0);
+			
+			Transaction transaction = null;
+			transaction = session.beginTransaction();
+			session.update(newUser);
+			transaction.commit();
+			return true;
+			
+			
+
+
+			  }catch(Exception e){
+	
+			  System.out.println(e.getMessage());
+			  return false;
+			  
+			  }finally{
+			  // Actual contact insertion will happen at this step
+			  session.flush();
+			  session.close();
+			  
+			  }
+		
+		
+	}
 	  
 		public static void insertUser(String uid){
 			
@@ -184,5 +220,5 @@ public static boolean checkUser(String uid){
 			
 			
 		}
-		
+	
 }

@@ -83,20 +83,26 @@ public class Controller extends HttpServlet {
     	  if(UserDAO.checkFirstlogin(user)){
     		  System.out.println("first login");
     		  nextPage = "/knt/jsp/changepw.jsp";
+    		   UserSession userobject = new UserSession();
+    		   userobject.setUid(user);
+    		   session.setAttribute("user", userobject);	
     		  response.sendRedirect(nextPage);
     		  return;
     	  }
     UserSession userobject = new UserSession();
     userobject.setUid(user);
     session.setAttribute("user", userobject);	 
-    nextPage = "/knt/jsp/votemenu.jsp";
+	nextPage = "/knt/jsp/votemenu.jsp";
       }
 
-      //Not implemented yet !!
+      //Change pw
       if(todo.equals("changepw")){
-    	  request.getParameter("password");
-    	  nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  String password = request.getParameter("password");
+    	  UserSession userSession = (UserSession) session.getAttribute("user");
+    	  if(UserDAO.updatetUser(userSession.uid, password)) nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }
+      
       //Handle the choose of a poll
       if (todo.equals("pollchoose")){
     	  
