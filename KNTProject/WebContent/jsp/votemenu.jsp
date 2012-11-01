@@ -22,7 +22,7 @@
 	<div class="page">
 	
       <h3 class="header">
-        <a href="./index.html" title="Home">
+        <a href="#" title="Home">
           eXceed Camp#9
          
           <span>
@@ -49,7 +49,7 @@
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">
 				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">				
-        		 <h1 ><font size="10" ><a ><%=p.getName() %></a></font></h1> 
+        		 <a href="javascript:;" onclick="parentNode.submit();"><h1><font size="10"><%=p.getName() %></font></h1></a>
         		 
      		</form>
             <p>
