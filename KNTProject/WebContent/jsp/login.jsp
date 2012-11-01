@@ -9,6 +9,9 @@
 
 <%
 	UserSession user = (UserSession) session.getAttribute("user");
+	if (user != null) {
+		
+	}
 %>
 </head>
 <body>

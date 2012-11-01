@@ -9,6 +9,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import org.joda.time.DateTime;
+
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
 
@@ -80,19 +82,26 @@ public class Controller extends HttpServlet {
     		  response.sendRedirect(nextPage);
     		  return;  
     	  }
+    	  UserSession userobject = new UserSession();
+		   userobject.setUid(user);
+		   DateTime countdown = Countdown.getDate();
+		   if (countdown != null) userobject.setCountdown(countdown);
+		   else userobject.setCountdown(new DateTime(2099, 01, 01, 0, 0));
+		 
+		   session.setAttribute("user", userobject);
+
     	  if(UserDAO.checkFirstlogin(user)){
     		  System.out.println("first login");
-    		  nextPage = "/knt/jsp/changepw.jsp";
-    		   UserSession userobject = new UserSession();
-    		   userobject.setUid(user);
-    		   session.setAttribute("user", userobject);	
+    		   nextPage = "/knt/jsp/changepw.jsp";
     		  response.sendRedirect(nextPage);
     		  return;
     	  }
-    UserSession userobject = new UserSession();
-    userobject.setUid(user);
-    session.setAttribute("user", userobject);	 
-	nextPage = "/knt/jsp/votemenu.jsp";
+
+    if (userobject.getCountdown().isAfter(new DateTime()) ) nextPage = "/knt/jsp/votemenu.jsp";
+    else nextPage = "/knt/jsp/results.jsp";
+
+	response.sendRedirect(nextPage);
+	return;
       }
 
       //Change pw

@@ -1,5 +1,8 @@
 package knt.exceedvote.system;
+import java.util.Date;
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 import knt.exceedvote.model.*;
 /**
@@ -13,7 +16,14 @@ public class UserSession {
 	String typ;
 	List<Poll> novote;
 	List<Poll> voted;
+	DateTime countdown;
 	
+	public DateTime getCountdown() {
+		return countdown;
+	}
+	public void setCountdown(DateTime countdown) {
+		this.countdown = countdown;
+	}
 	public List<Poll> getNovote() {
 		return novote;
 	}

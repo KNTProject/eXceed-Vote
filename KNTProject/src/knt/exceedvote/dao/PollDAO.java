@@ -39,10 +39,10 @@ public class PollDAO {
 			List<Poll> polls = new ArrayList();
 			
 			if (pid == null) {
-			java.util.Date date = new Date();
-			Timestamp timestamp = new Timestamp(date.getTime());
+			//java.util.Date date = new Date();
+			//Timestamp timestamp = new Timestamp(date.getTime());
 			 polls = session.createCriteria(Poll.class)
-					 .add(Restrictions.gt("deadline", timestamp))
+			//		 .add(Restrictions.gt("deadline", timestamp))
 					 .list();
 			} else
 			{
