@@ -9,6 +9,7 @@ package knt.exceedvote.model;
 public class Vote {
 
 	int vid;
+	String uid;
 	int pid;
 	int tid;
 	int votes;
@@ -19,7 +20,6 @@ public class Vote {
 	public void setTid(int tid) {
 		this.tid = tid;
 	}
-	String uid;
 	
 	
 	public int getVid() {

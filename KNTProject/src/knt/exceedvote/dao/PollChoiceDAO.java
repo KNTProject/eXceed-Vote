@@ -31,7 +31,7 @@ public class PollChoiceDAO {
 
 		  try{
 			  // This step will read hibernate.cfg.xml and prepare hibernate for use
-
+			  
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			session =sessionFactory.openSession();
 			

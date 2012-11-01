@@ -1,5 +1,10 @@
 package knt.exceedvote.model;
 
+import java.util.Date;
+
+
+
+
 /**
  * Model for Poll Object
  * @author Thomas Raudenbusch
@@ -10,7 +15,14 @@ public class Poll {
 	private int pid;
 	private String name;
 	private String description;
+	private Date deadline;
 
+	public Date getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
 	public int getPid() {
 		return pid;
 	}
