@@ -41,7 +41,7 @@ public class VoteDAO {
 	 * @return
 	 * return true when input was okay, return false if smth goes wrong
 	 */
-	public static boolean insertVote(String uid, int pid, int tid, int votes){
+	public static boolean insertVote(Vote newVote){
 		
 		  // Always set null to avoid problems
 		  Session session = null;
@@ -53,12 +53,6 @@ public class VoteDAO {
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			session =sessionFactory.openSession();
 			
-			//Create a new Vote object and put into the attributs
-			Vote newVote = new Vote();
-			newVote.setPid(pid);
-			newVote.setUid(uid);
-			newVote.setTid(tid);
-			newVote.setVotes(votes);
 			
 			//Begin the db input
 			Transaction transaction = null;

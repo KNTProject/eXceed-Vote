@@ -12,6 +12,19 @@ public class Login {
 	  private int firstlogin;
 	  private int tyid;
 		
+	  public Login(String password, String uid, int firstlogin, int tyid){
+		  this.uid = uid;
+		  this.password = password;
+		  this.firstlogin = firstlogin;
+		  this.tyid = tyid;
+	  }
+	  
+	  public Login(String password, String uid){
+		  this.uid = uid;
+		  this.password = password;
+		  this.firstlogin = 0;
+		  this.tyid = 1;
+	  }
 	  
 	  public int getTyid() {
 		return tyid;

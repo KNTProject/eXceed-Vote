@@ -138,7 +138,7 @@ public static boolean checkUser(String uid){
 			  }
 	  }
 	
-	  public static boolean updatetUser(String uid, String password){
+	  public static boolean updatetUser(Login newUser){
 
 		  Session session = null;
 
@@ -148,12 +148,6 @@ public static boolean checkUser(String uid){
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			session =sessionFactory.openSession();
 			
-
-			Login newUser = new Login();
-			newUser.setUid(uid);
-			newUser.setPassword(PasswordHash.createHash(password));
-			newUser.setTyid(1);
-			newUser.setFirstlogin(0);
 			
 			Transaction transaction = null;
 			transaction = session.beginTransaction();
@@ -195,11 +189,7 @@ public static boolean checkUser(String uid){
 				  String password = new BigInteger(130, random).toString(32);  
 				
 
-				Login newUser = new Login();
-				newUser.setUid(uid);
-				newUser.setPassword(PasswordHash.createHash(password));
-				newUser.setTyid(1);
-				newUser.setFirstlogin(1);
+				Login newUser = new Login(uid,PasswordHash.createHash(password), 1, 1);
 				
 				Transaction transaction = null;
 				transaction = session.beginTransaction();

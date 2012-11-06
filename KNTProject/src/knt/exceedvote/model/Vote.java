@@ -8,11 +8,18 @@ package knt.exceedvote.model;
  */
 public class Vote {
 
-	int vid;
-	String uid;
-	int pid;
-	int tid;
-	int votes;
+	private int vid;
+	private String uid;
+	private int pid;
+	private int tid;
+	private int votes;
+	
+	public Vote(String uid, int pid, int tid, int votes){
+		this.uid = uid;
+		this.pid = pid;
+		this.tid = tid;
+		this.votes = votes;
+	}
 	
 	public int getTid() {
 		return tid;

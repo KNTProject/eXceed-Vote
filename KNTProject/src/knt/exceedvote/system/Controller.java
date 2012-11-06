@@ -13,6 +13,8 @@ import org.joda.time.DateTime;
 
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
+import knt.exceedvote.model.Login;
+import knt.exceedvote.model.Vote;
 
 /**
  * This class is the Controller which handels the requests and returns from jsp pages
@@ -108,7 +110,7 @@ public class Controller extends HttpServlet {
       if(todo.equals("changepw")){
     	  String password = request.getParameter("password");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
-    	  if(UserDAO.updatetUser(userSession.uid, password)) nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  if(UserDAO.updatetUser(new Login(userSession.uid, password))) nextPage = "/knt/jsp/votemenu.jsp"; 
     	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }
       
@@ -145,7 +147,7 @@ public class Controller extends HttpServlet {
     	  UserSession userSession = (UserSession) session.getAttribute("user");
 
 
-    	  if(VoteDAO.insertVote(userSession.getUid(), pid, team, 1)) {
+    	  if(VoteDAO.insertVote(new Vote(userSession.getUid(), pid, team, 1))) {
     	  nextPage = "/knt/jsp/votemenu.jsp";
     	  } else {
     		  nextPage = "/knt/jsp/voting.jsp";

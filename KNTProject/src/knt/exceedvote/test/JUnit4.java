@@ -3,6 +3,7 @@ package knt.exceedvote.test;
 
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
+import knt.exceedvote.model.Vote;
 import knt.exceedvote.system.UserSession;
 
 import org.junit.AfterClass;
@@ -77,7 +78,7 @@ public class JUnit4 {
 	    final int tid = 1;
 	    final int votes = 1;
 
-	    assertEquals(true, VoteDAO.insertVote(uid, pid, tid, votes));
+	    assertEquals(true, VoteDAO.insertVote(new Vote(uid, pid, tid, votes)));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
