@@ -55,7 +55,8 @@ public static boolean checkUser(String uid){
 			 return false;
 		 }
 		  }catch(Exception e){
-		  System.out.println(e.getMessage());
+			  Logger log = Logger.getLogger( UserDAO.class );
+			  log.error(e);
 		  return false;
 		  
 		  }finally{
@@ -92,7 +93,8 @@ public static boolean checkUser(String uid){
 			 }
 
 			  }catch(Exception e){
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( UserDAO.class );
+				  log.error(e);
 			  return false;
 			  
 			  }finally{
@@ -127,7 +129,8 @@ public static boolean checkUser(String uid){
 			 }
 			 
 			  }catch(Exception e){
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( UserDAO.class );
+				  log.error(e);
 			  return false;
 			  
 			  }finally{
@@ -160,7 +163,8 @@ public static boolean checkUser(String uid){
 
 			  }catch(Exception e){
 	
-			  System.out.println(e.getMessage());
+				  Logger log = Logger.getLogger( UserDAO.class );
+				  log.error(e);
 			  return false;
 			  
 			  }finally{
@@ -199,7 +203,8 @@ public static boolean checkUser(String uid){
 				SSLMail.sendMail(uid, password, "register");
 
 				  }catch(Exception e){
-				  System.out.println(e.getMessage());
+					  Logger log = Logger.getLogger( UserDAO.class );
+					  log.error(e);
 				  
 				  }finally{
 				  // Actual contact insertion will happen at this step
