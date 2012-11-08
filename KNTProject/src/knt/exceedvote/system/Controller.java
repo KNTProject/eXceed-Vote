@@ -99,7 +99,9 @@ public void init() throws ServletException {
     		  response.sendRedirect(nextPage);
     		  return;  
     	  }
+		   Login userObj = userDao.getUser(user);
     	  UserSession userobject = new UserSession();
+    	  userobject.setTyp(userobject.getTyp());
 		   userobject.setUid(user);
 		   DateTime countdown = Countdown.getDate();
 		   if (countdown != null) userobject.setCountdown(countdown);
@@ -107,7 +109,7 @@ public void init() throws ServletException {
 		 
 		   session.setAttribute("user", userobject);
 
-    	  if(userDao.checkFirstlogin(user)){
+    	  if(userObj.getFirstlogin() == 1){
     		  System.out.println("first login");
     		   nextPage = "/knt/jsp/changepw.jsp";
     		  response.sendRedirect(nextPage);
@@ -125,7 +127,7 @@ public void init() throws ServletException {
       if(todo.equals("changepw")){
     	  String password = request.getParameter("password");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
-    	  if(userDao.updatetUser(new Login(userSession.uid, password))) nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  if(userDao.updatetUser(new Login(userSession.getUid(), password, userSession.getTyp(), 0))) nextPage = "/knt/jsp/votemenu.jsp"; 
     	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }
       

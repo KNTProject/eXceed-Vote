@@ -12,20 +12,15 @@ public class Login {
 	  private int firstlogin;
 	  private int tyid;
 		
+	  public Login(){ }
+	  
 	  public Login(String uid, String password, int tyid, int firstlogin){
 		  this.uid = uid;
 		  this.password = password;
 		  this.firstlogin = firstlogin;
 		  this.tyid = tyid;
 	  }
-	  
-	  public Login(String password, String uid){
-		  this.uid = uid;
-		  this.password = password;
-		  this.firstlogin = 0;
-		  this.tyid = 1;
-	  }
-	  
+	
 	  public int getTyid() {
 		return tyid;
 	}
@@ -34,7 +29,7 @@ public class Login {
 		this.tyid = tyid;
 	}
 
-	public int isFirstlogin() {
+	public int getFirstlogin() {
 		return firstlogin;
 	}
 

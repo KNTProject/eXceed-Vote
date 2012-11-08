@@ -1,4 +1,5 @@
-<%@page import="knt.exceedvote.dao.PollDAO" import="knt.exceedvote.model.Poll" import="java.util.List" 
+<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl"%>
+<%@page import="knt.exceedvote.dao.*" import="knt.exceedvote.model.Poll" import="java.util.List" 
 import="knt.exceedvote.system.UserSession" import="org.joda.time.DateTime"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -166,7 +167,11 @@ function countdown(yr,m,d,hr,min){
         </ul>
 		
 		<div class="main">
-			<% List<Poll> polls = PollDAO.getPolls(null);
+			<% 
+			PollDAO polldao = DaoFactoryImpl.getInstance().getPollDao();
+
+			
+			List<Poll> polls = polldao.getPolls(null);
 
 			for (Poll p : polls) {
 			

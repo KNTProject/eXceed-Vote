@@ -108,44 +108,6 @@ public boolean checkUser(String uid){
 			  
 			  }
 	  }
-	  
-	  /* (non-Javadoc)
-	 * @see knt.exceedvote.dao.hibernate.UserDAO#checkFirstlogin(java.lang.String)
-	 */
-	@Override
-	public boolean checkFirstlogin(String uid){
-		  
-		  Session session = null;
-
-		  try{
-			  // This step will read hibernate.cfg.xml and prepare hibernate for use
-
-			session = getSession();
-			
-			
-			  //Create new instance of Contact and set values in it by reading them from form object
-
-			 List<Login> user = session.createCriteria(Login.class)
-					 .add(Restrictions.like("uid", uid))
-					 .list();
-
-			 if(user.get(0).isFirstlogin() == 1){
-				 return true;
-			 } else {
-				 return false;
-			 }
-			 
-			  }catch(Exception e){
-			  System.out.println(e.getMessage());
-			  return false;
-			  
-			  }finally{
-			  // Actual contact insertion will happen at this step
-			  session.flush();
-			  session.close();
-			  
-			  }
-	  }
 	
 	  /* (non-Javadoc)
 	 * @see knt.exceedvote.dao.hibernate.UserDAO#updatetUser(knt.exceedvote.model.Login)
@@ -204,8 +166,7 @@ public boolean checkUser(String uid){
 				  String password = new BigInteger(130, random).toString(32);  
 				
 
-				Login newUser = new Login(uid,PasswordHash.createHash(password), 1, 1);
-				
+				Login newUser = new Login(uid, PasswordHash.createHash(password), 1, 1);
 				Transaction transaction = null;
 				transaction = session.beginTransaction();
 
@@ -238,10 +199,43 @@ public boolean checkUser(String uid){
 				  session.close();
 				  
 				  }
-			
-			
+	
 		}
 
+
+		@Override
+		public Login getUser(String uid) {
+
+			Session session = null;
+			try{
+			session = getSession();
+			
+			
+			  //Create new instance of Contact and set values in it by reading them from form object
+
+			 List<Login> user = session.createCriteria(Login.class)
+					 .add(Restrictions.like("uid", uid))
+					 .list();
+
+			 return user.get(0);
+			 
+
+			  }catch(Exception e){
+	
+			  System.out.println(e.getMessage());
+			  return null;
+			  
+			  }finally{
+			  // Actual contact insertion will happen at this step
+			  session.flush();
+			  session.close();
+			  
+			  }
+			
+		}
+		
+		
+		
 		/**
 		 * @return
 		 */
@@ -249,5 +243,6 @@ public boolean checkUser(String uid){
 			Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
 			return session;
 		}
+
 	
 }

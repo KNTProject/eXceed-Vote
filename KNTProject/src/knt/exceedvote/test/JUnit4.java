@@ -25,12 +25,12 @@ public class JUnit4 {
 	    System.out.println("-- Testing method setUid, "
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "12345";
-	    final String typ = "student";
+	    final int typ = 1;
 	    UserSession userSession = new UserSession();
 	    userSession.setUid(uid);
 	    userSession.setTyp(typ);
 	    assertEquals("12345", userSession.getUid());
-	    assertEquals("student", userSession.getTyp());
+	    assertEquals(1, userSession.getTyp());
 
 	    System.out.println("-- Test ended successfull --");
 	  }

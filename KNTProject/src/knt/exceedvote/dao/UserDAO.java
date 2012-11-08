@@ -8,10 +8,11 @@ public interface UserDAO {
 
 	public boolean checkpassword(String uid, String password);
 
-	public boolean checkFirstlogin(String uid);
 
 	public boolean updatetUser(Login newUser);
 
 	public boolean insertUser(String uid);
+	
+	public Login getUser(String uid);
 
 }

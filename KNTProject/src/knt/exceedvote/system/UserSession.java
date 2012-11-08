@@ -13,7 +13,7 @@ import knt.exceedvote.model.*;
 public class UserSession {
 
 	String uid;
-	String typ;
+	int typ;
 	List<Poll> novote;
 	List<Poll> voted;
 	DateTime countdown;
@@ -43,10 +43,10 @@ public class UserSession {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getTyp() {
+	public int getTyp() {
 		return typ;
 	}
-	public void setTyp(String typ) {
+	public void setTyp(int typ) {
 		this.typ = typ;
 	}
 	
