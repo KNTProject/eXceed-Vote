@@ -12,7 +12,7 @@ public class Login {
 	  private int firstlogin;
 	  private int tyid;
 		
-	  public Login(String password, String uid, int firstlogin, int tyid){
+	  public Login(String uid, String password, int tyid, int firstlogin){
 		  this.uid = uid;
 		  this.password = password;
 		  this.firstlogin = firstlogin;

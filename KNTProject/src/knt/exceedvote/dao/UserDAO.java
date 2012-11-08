@@ -10,6 +10,7 @@ import knt.exceedvote.model.Login;
 import knt.exceedvote.system.PasswordHash;
 import knt.exceedvote.system.SSLMail;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -177,7 +178,7 @@ public static boolean checkUser(String uid){
 		
 	}
 	  
-		public static void insertUser(String uid){
+		public static boolean insertUser(String uid){
 			
 			
 
@@ -193,18 +194,34 @@ public static boolean checkUser(String uid){
 				  String password = new BigInteger(130, random).toString(32);  
 				
 
-				Login newUser = new Login(uid,PasswordHash.createHash(password), 1, 1);
-				
+				Login newUser = new Login(uid, PasswordHash.createHash(password), 1, 1);
 				Transaction transaction = null;
+
 				transaction = session.beginTransaction();
+
 				session.save(newUser);
 				transaction.commit();
+				
+				if (! SSLMail.sendMail(newUser.getUid(), password))
+				{
 
-				SSLMail.sendMail(uid, password, "register");
+					session.flush();
+					session.clear();
+					//session.close();
+					
+					transaction = session.beginTransaction();
 
+					session.delete(newUser);
+					transaction.commit();
+					
+					return false;
+				}
+				return true;
+				
 				  }catch(Exception e){
 					  Logger log = Logger.getLogger( UserDAO.class );
 					  log.error(e);
+					  return false;
 				  
 				  }finally{
 				  // Actual contact insertion will happen at this step
@@ -214,6 +231,11 @@ public static boolean checkUser(String uid){
 				  }
 			
 			
+		}
+		
+		public static void main (String args[]){
+			
+			System.out.println(insertUser("newuser9"));
 		}
 	
 }

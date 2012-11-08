@@ -26,7 +26,7 @@ public class SSLMail {
  * @param type
  * type is the type of email example registration
  */
-	public static void sendMail(String recevier, String password, String type){
+	public static boolean sendMail(String recevier, String password){
 		
 		InputStream stream = SSLMail.class.getResourceAsStream( "mail.properties" );
 		Properties properties = new Properties();
@@ -77,7 +77,7 @@ public class SSLMail {
 				}
 			});
  
-		if (type.equals("register")){
+
 			String mailpath = null;
 			try {
 				properties.load(stream);
@@ -104,12 +104,12 @@ public class SSLMail {
  
 			Transport.send(message);
  
-			System.out.println("Done");
+			return true;
  
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			return false;
 		}
-	}
+	
 	}
 
 	

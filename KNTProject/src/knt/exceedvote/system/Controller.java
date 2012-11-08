@@ -161,9 +161,8 @@ public class Controller extends HttpServlet {
       if (todo.equals("register")){
 	
 	String kuid = request.getParameter("kuid");
-	UserDAO.insertUser(kuid);
-	nextPage = "login.jsp";
-	
+	if(UserDAO.insertUser(kuid)) nextPage = "login.jsp";
+	else nextPage = "register.jsp";
 }
       // Send the next website, should never been 'null' here
          response.sendRedirect(nextPage);
