@@ -59,7 +59,9 @@ public class DaoFactoryImpl extends DaoFactory{
 	}
 	
 	public SessionFactory getSessionFactory(){
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration()
+		.configure("knt/exceedvote/dao/hibernate/cfg/hibernate.cfg.xml")
+		.buildSessionFactory();
 
 		return sessionFactory;
 	}
