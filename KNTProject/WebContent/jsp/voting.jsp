@@ -1,3 +1,4 @@
+<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl"%>
 <%@page import="knt.exceedvote.model.PollChoice"%>
 <%@page import="knt.exceedvote.dao.*" import="knt.exceedvote.model.*" import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -18,11 +19,16 @@
 	int pid = Integer.parseInt(session.getAttribute("pid").toString());
 session.setAttribute("pid", pid);
 
-List<PollChoice> teams = PollChoiceDAOImpl.getChoices(pid);
+
+PollChoiceDAO voteDao = DaoFactoryImpl.getInstance().getPollChoiceDao();
+TeamDAO teamdao = DaoFactoryImpl.getInstance().getTeamDao();
+
+
+List<PollChoice> teams = voteDao.getChoices(pid);
 
 for (PollChoice p : teams){
 	
-	List<Team> team = TeamDAOImpl.getTeam(p.getTid());	
+	List<Team> team = teamdao.getTeam(p.getTid());	
 	if (team.get(0) == null){} else {
 %>
 

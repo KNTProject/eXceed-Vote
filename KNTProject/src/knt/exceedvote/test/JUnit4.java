@@ -44,8 +44,9 @@ public class JUnit4 {
 	    System.out.println("-- Testing method setUid, "
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "123";
-
-	    assertEquals(true, UserDAOImpl.checkUser(uid));
+	    UserDAOImpl userdao = new UserDAOImpl();
+	    
+	    assertEquals(true, userdao.checkUser(uid));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
@@ -60,8 +61,9 @@ public class JUnit4 {
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "123";
 	    final String pw = "wda";
+	    UserDAOImpl userdao = new UserDAOImpl();
 
-	    assertEquals(true, UserDAOImpl.checkpassword(uid, pw));
+	    assertEquals(true, userdao.checkpassword(uid, pw));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
@@ -78,7 +80,8 @@ public class JUnit4 {
 	    final int tid = 1;
 	    final int votes = 1;
 
-	    assertEquals(true, VoteDAOImpl.insertVote(new Vote(uid, pid, tid, votes)));
+	    VoteDAOImpl vote = new VoteDAOImpl();
+	    assertEquals(true, vote.insertVote(new Vote(uid, pid, tid, votes)));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  

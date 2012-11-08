@@ -12,6 +12,6 @@ public interface UserDAO {
 
 	public boolean updatetUser(Login newUser);
 
-	public void insertUser(String uid);
+	public boolean insertUser(String uid);
 
 }

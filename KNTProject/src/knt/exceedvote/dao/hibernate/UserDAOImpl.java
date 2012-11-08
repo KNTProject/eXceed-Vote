@@ -189,7 +189,7 @@ public boolean checkUser(String uid){
 		 * @see knt.exceedvote.dao.hibernate.UserDAO#insertUser(java.lang.String)
 		 */
 		@Override
-		public void insertUser(String uid){
+		public boolean insertUser(String uid){
 			
 			
 
@@ -208,13 +208,29 @@ public boolean checkUser(String uid){
 				
 				Transaction transaction = null;
 				transaction = session.beginTransaction();
+
 				session.save(newUser);
 				transaction.commit();
 
-				SSLMail.sendMail(uid, password, "register");
+				if (! SSLMail.sendMail(newUser.getUid(), password))
+				{
+
+					session.flush();
+					session.clear();
+					//session.close();
+
+					transaction = session.beginTransaction();
+
+					session.delete(newUser);
+					transaction.commit();
+
+					return false;
+				}
+				return true;
 
 				  }catch(Exception e){
 				  System.out.println(e.getMessage());
+				  return false;
 				  
 				  }finally{
 				  // Actual contact insertion will happen at this step
