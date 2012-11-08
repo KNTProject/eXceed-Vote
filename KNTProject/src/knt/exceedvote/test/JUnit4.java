@@ -1,8 +1,8 @@
 package knt.exceedvote.test;
 
 
-import knt.exceedvote.dao.UserDAO;
-import knt.exceedvote.dao.VoteDAO;
+import knt.exceedvote.dao.hibernate.UserDAOImpl;
+import knt.exceedvote.dao.hibernate.VoteDAOImpl;
 import knt.exceedvote.model.Vote;
 import knt.exceedvote.system.UserSession;
 
@@ -45,7 +45,7 @@ public class JUnit4 {
 	        + "setTyp and getUid, getTyp --");
 	    final String uid = "123";
 
-	    assertEquals(true, UserDAO.checkUser(uid));
+	    assertEquals(true, UserDAOImpl.checkUser(uid));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
@@ -61,7 +61,7 @@ public class JUnit4 {
 	    final String uid = "123";
 	    final String pw = "wda";
 
-	    assertEquals(true, UserDAO.checkpassword(uid, pw));
+	    assertEquals(true, UserDAOImpl.checkpassword(uid, pw));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  
@@ -78,7 +78,7 @@ public class JUnit4 {
 	    final int tid = 1;
 	    final int votes = 1;
 
-	    assertEquals(true, VoteDAO.insertVote(new Vote(uid, pid, tid, votes)));
+	    assertEquals(true, VoteDAOImpl.insertVote(new Vote(uid, pid, tid, votes)));
 	    System.out.println("-- Test ended successfull --");
 	  }
 	  

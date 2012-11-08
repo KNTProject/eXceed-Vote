@@ -13,6 +13,9 @@ import org.joda.time.DateTime;
 
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
+import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
+import knt.exceedvote.dao.hibernate.UserDAOImpl;
+import knt.exceedvote.dao.hibernate.VoteDAOImpl;
 import knt.exceedvote.model.Login;
 import knt.exceedvote.model.Vote;
 
@@ -25,8 +28,20 @@ import knt.exceedvote.model.Vote;
 
 public class Controller extends HttpServlet {
    private static final long serialVersionUID = 1L;
+   
+   private UserDAO userDao;
+   private VoteDAO voteDao;
+   
+   
   
- /**
+ @Override
+public void init() throws ServletException {
+	super.init();
+	userDao = DaoFactoryImpl.getInstance().getUserDao();
+	voteDao = DaoFactoryImpl.getInstance().getVoteDao();
+}
+
+/**
   * doGet should do the same like toPost (its no difference)
   */
    @Override
@@ -72,13 +87,13 @@ public class Controller extends HttpServlet {
     	  }
     
     	  
-    	  if(!UserDAO.checkUser(user)) {
+    	  if(!userDao.checkUser(user)) {
     		  System.out.println("wrong id");
     		  nextPage = "/knt/jsp/login.jsp";
     		  response.sendRedirect(nextPage);
     		  return;
     	  }
-    	  if(!UserDAO.checkpassword(user, password)){
+    	  if(!userDao.checkpassword(user, password)){
     		  System.out.println("wrong pw");
     		  nextPage = "/knt/jsp/login.jsp";
     		  response.sendRedirect(nextPage);
@@ -92,7 +107,7 @@ public class Controller extends HttpServlet {
 		 
 		   session.setAttribute("user", userobject);
 
-    	  if(UserDAO.checkFirstlogin(user)){
+    	  if(userDao.checkFirstlogin(user)){
     		  System.out.println("first login");
     		   nextPage = "/knt/jsp/changepw.jsp";
     		  response.sendRedirect(nextPage);
@@ -110,7 +125,7 @@ public class Controller extends HttpServlet {
       if(todo.equals("changepw")){
     	  String password = request.getParameter("password");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
-    	  if(UserDAO.updatetUser(new Login(userSession.uid, password))) nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  if(userDao.updatetUser(new Login(userSession.uid, password))) nextPage = "/knt/jsp/votemenu.jsp"; 
     	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }
       
@@ -147,7 +162,7 @@ public class Controller extends HttpServlet {
     	  UserSession userSession = (UserSession) session.getAttribute("user");
 
 
-    	  if(VoteDAO.insertVote(new Vote(userSession.getUid(), pid, team, 1))) {
+    	  if(voteDao.insertVote(new Vote(userSession.getUid(), pid, team, 1))) {
     	  nextPage = "/knt/jsp/votemenu.jsp";
     	  } else {
     		  nextPage = "/knt/jsp/voting.jsp";
@@ -161,7 +176,7 @@ public class Controller extends HttpServlet {
       if (todo.equals("register")){
 	
 	String kuid = request.getParameter("kuid");
-	UserDAO.insertUser(kuid);
+	userDao.insertUser(kuid);
 	nextPage = "login.jsp";
 	
 }

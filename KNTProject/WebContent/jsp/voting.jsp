@@ -15,16 +15,15 @@
 <input type="hidden" name="todo" value="voteteam">
 
 <%
-int pid = Integer.parseInt(session.getAttribute("pid").toString());
+	int pid = Integer.parseInt(session.getAttribute("pid").toString());
 session.setAttribute("pid", pid);
 
-List<PollChoice> teams = PollChoiceDAO.getChoices(pid);
+List<PollChoice> teams = PollChoiceDAOImpl.getChoices(pid);
 
 for (PollChoice p : teams){
 	
-	List<Team> team = TeamDAO.getTeam(p.getTid());	
+	List<Team> team = TeamDAOImpl.getTeam(p.getTid());	
 	if (team.get(0) == null){} else {
-	
 %>
 
     <input type="radio" name="team" value="<%=team.get(0).getTid()%>"><%=team.get(0).getName()%><br>
