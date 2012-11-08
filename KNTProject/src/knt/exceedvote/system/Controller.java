@@ -174,11 +174,10 @@ public void init() throws ServletException {
       
       //Handle the registration for a new user
       if (todo.equals("register")){
-	
-	String kuid = request.getParameter("kuid");
-	userDao.insertUser(kuid);
-	nextPage = "login.jsp";
-	
+    		
+    		String kuid = request.getParameter("kuid");
+    		if(UserDAO.insertUser(kuid)) nextPage = "login.jsp";
+    		else nextPage = "register.jsp";
 }
       // Send the next website, should never been 'null' here
          response.sendRedirect(nextPage);
