@@ -10,6 +10,7 @@ import knt.exceedvote.model.Login;
 import knt.exceedvote.system.PasswordHash;
 import knt.exceedvote.system.SSLMail;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
