@@ -1,5 +1,8 @@
 package knt.exceedvote.dao;
 
+import java.util.Collection;
+import java.util.List;
+
 import knt.exceedvote.model.Login;
 
 public interface UserDAO {
@@ -15,4 +18,6 @@ public interface UserDAO {
 	
 	public Login getUser(String uid);
 
+	public Collection<Login> getAllUsers();
+	
 }

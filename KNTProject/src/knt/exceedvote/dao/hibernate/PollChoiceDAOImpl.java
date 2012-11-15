@@ -2,6 +2,7 @@ package knt.exceedvote.dao.hibernate;
 
 import java.util.List;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollChoiceDAO;
 import knt.exceedvote.model.PollChoice;
 
@@ -63,7 +64,7 @@ public class PollChoiceDAOImpl implements PollChoiceDAO {
 	 * @return
 	 */
 	private Session getSession() {
-		Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
+		Session session = DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
 	}
 	

@@ -2,6 +2,7 @@ package knt.exceedvote.dao.hibernate;
 
 import java.util.List;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.TeamDAO;
 import knt.exceedvote.model.Team;
 
@@ -63,7 +64,7 @@ public class TeamDAOImpl implements TeamDAO {
 	 */
 	private static Session getSession()
 			throws HibernateException {
-		Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
+		Session session =DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
 	}
 

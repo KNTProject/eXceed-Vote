@@ -4,6 +4,7 @@ package knt.exceedvote.dao.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.model.Login;
 import knt.exceedvote.model.Poll;
@@ -117,12 +118,57 @@ public class VoteDAOImpl implements VoteDAO {
 			  }
 
 	}
+	
+	
+	
+	public Vote getVote(int vid){
+		
+		  // Always set null to avoid problems
+		  Session session = getSession();
+
+		  try{
+			  
+			// This step will read hibernate.cfg.xml and prepare hibernate for use
+			@SuppressWarnings("deprecation")
+			
+			List<Vote> voteList = new ArrayList<Vote>();
+		
+				
+			//Create a new Vote object and put into the attributs
+			voteList = session.createCriteria(Vote.class)
+					 .add(Restrictions.like("vid", vid)
+					 )
+					 .list();
+			
+			// voteList = session.createCriteria(Vote.class)
+			//		.add(arg0)
+			
+			 return voteList.get(0);
+
+			  }catch(Exception e){
+
+			  Logger log = Logger.getLogger( VoteDAOImpl.class );
+			  log.error(e);
+			  
+			  return null;
+			  
+			  }finally{
+			  // Clean connection
+			  session.flush();
+			  // Close connection
+			  session.close();
+			  
+			  }
+
+	}
+		
+	
 
 	/**
 	 * @return
 	 */
 	private Session getSession() {
-		Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
+		Session session =DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
 	}
 	

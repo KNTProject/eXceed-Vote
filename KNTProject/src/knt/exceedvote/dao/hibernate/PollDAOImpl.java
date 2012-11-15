@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollDAO;
 import knt.exceedvote.model.Poll;
 
@@ -100,7 +101,7 @@ public class PollDAOImpl implements PollDAO {
 	 */
 	private Session getSession()
 			throws HibernateException {
-		Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
+		Session session =DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
 	}
 	

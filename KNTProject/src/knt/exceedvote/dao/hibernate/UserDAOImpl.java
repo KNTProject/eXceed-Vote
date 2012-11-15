@@ -4,8 +4,10 @@ import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Collection;
 import java.util.List;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.model.Login;
 import knt.exceedvote.system.PasswordHash;
@@ -42,7 +44,7 @@ public boolean checkUser(String uid){
 		  // This step will read hibernate.cfg.xml and prepare hibernate for use
 
 		session = getSession();
-
+		
 		 List userlist = session.createCriteria(Login.class)
 				 .add(Restrictions.like("uid", uid))
 				 .setProjection( Projections.projectionList()
@@ -235,12 +237,45 @@ public boolean checkUser(String uid){
 		}
 		
 		
+		@Override
+		public Collection<Login> getAllUsers() {
+
+			Session session = null;
+			try{
+			session = getSession();
+			
+			
+			  //Create new instance of Contact and set values in it by reading them from form object
+
+			 List<Login> users = session.createCriteria(Login.class)
+					 .list();
+
+			 Collection<Login> collection = users;
+			 
+			 return collection;
+			 
+
+			  }catch(Exception e){
+	
+			  System.out.println(e.getMessage());
+			  return null;
+			  
+			  }finally{
+			  // Actual contact insertion will happen at this step
+			  session.flush();
+			  session.close();
+			  
+			  }
+			
+		}
+		
+		
 		
 		/**
 		 * @return
 		 */
 		private Session getSession() {
-			Session session =DaoFactoryImpl.getInstance().getSessionFactory().openSession();
+			Session session = DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 			return session;
 		}
 

@@ -1,6 +1,7 @@
 package knt.exceedvote.dao;
 
 import knt.exceedvote.dao.UserDAO;
+import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
 import knt.exceedvote.dao.hibernate.UserDAOImpl;
 
 import org.hibernate.SessionFactory;
@@ -15,17 +16,19 @@ public abstract class DaoFactory {
 	private static DaoFactory factory; // the real instance
 	
 	
-	public static DaoFactory getInstance() {
-		if (factory == null) {
-			init(); // initialize and create factory object
+	public static DaoFactory getInstance(String type) {
+		if (type.equals("hibernate")){
+			if (factory == null) {
+				factory = new DaoFactoryImpl();
+			}
+			
+			return factory;
 		}
-		return factory;
-	}
+		return null;}
+
 	
-	private static void init() {
-		// no initialization to do yet, just create the instance
-		
-	}
+	public abstract void init();
+
 	
 
 	public abstract UserDAO getUserDao();
@@ -34,9 +37,6 @@ public abstract class DaoFactory {
 	public abstract TeamDAO getTeamDao();
 	public abstract VoteDAO getVoteDao();
 	
-	public SessionFactory getSessionFactory(){
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		return sessionFactory;
-	}
+	public abstract SessionFactory getSessionFactory();
 }
 

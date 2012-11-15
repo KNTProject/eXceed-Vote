@@ -11,6 +11,7 @@ import javax.servlet.http.*;
 
 import org.joda.time.DateTime;
 
+import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
@@ -37,8 +38,8 @@ public class Controller extends HttpServlet {
  @Override
 public void init() throws ServletException {
 	super.init();
-	userDao = DaoFactoryImpl.getInstance().getUserDao();
-	voteDao = DaoFactoryImpl.getInstance().getVoteDao();
+	userDao = DaoFactory.getInstance("hibernate").getUserDao();
+	voteDao = DaoFactory.getInstance("hibernate").getVoteDao();
 }
 
 /**
@@ -61,13 +62,13 @@ public void init() throws ServletException {
    public void doPost(HttpServletRequest request,
          HttpServletResponse response) throws ServletException, IOException {
       // Retrieve the current session, or create a new session if no session exists.
-      HttpSession session = request.getSession(true);
 
  
       // For dispatching the next Page
       String nextPage = "";
       String todo = request.getParameter("todo");
-
+      HttpSession session = request.getSession(true);
+      
       //Handle login and authentification to the website
       if (todo.equals("login")){
     	 

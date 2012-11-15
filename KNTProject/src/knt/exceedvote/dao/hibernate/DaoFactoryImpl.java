@@ -21,15 +21,8 @@ public class DaoFactoryImpl extends DaoFactory{
 	
 	
 	public static DaoFactoryImpl getInstance() {
-		if (factory == null) {
-			init(); // initialize and create factory object
-		}
-		return factory;
-	}
-	
-	private static void init() {
-		// no initialization to do yet, just create the instance
-		factory = new DaoFactoryImpl();
+
+		return null;
 	}
 	
 	/**
@@ -64,6 +57,12 @@ public class DaoFactoryImpl extends DaoFactory{
 		.buildSessionFactory();
 
 		return sessionFactory;
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

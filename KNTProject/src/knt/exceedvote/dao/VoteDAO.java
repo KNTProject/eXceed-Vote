@@ -23,4 +23,5 @@ public interface VoteDAO {
 
 	public List<Vote> getVotes(String uid);
 
+	public Vote getVote(int vid);
 }

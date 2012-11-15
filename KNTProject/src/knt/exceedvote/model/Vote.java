@@ -21,6 +21,16 @@ public class Vote {
 		this.votes = votes;
 	}
 	
+	public Vote(int vid, String uid, int pid, int tid, int votes){
+		this.vid = vid;
+		this.uid = uid;
+		this.pid = pid;
+		this.tid = tid;
+		this.votes = votes;
+	}
+	
+	public Vote() { }
+	
 	public int getTid() {
 		return tid;
 	}
