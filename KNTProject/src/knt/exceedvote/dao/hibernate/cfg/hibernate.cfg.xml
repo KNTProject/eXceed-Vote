@@ -17,7 +17,6 @@
   <mapping resource="knt/exceedvote/dao/hibernate/cfg/Login.hbm.xml"/>
   <mapping resource="knt/exceedvote/dao/hibernate/cfg/Poll.hbm.xml"/>
   <mapping resource="knt/exceedvote/dao/hibernate/cfg/Team.hbm.xml"/>
-  <mapping resource="knt/exceedvote/dao/hibernate/cfg/PollChoice.hbm.xml"/>
   <mapping resource="knt/exceedvote/dao/hibernate/cfg/Vote.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>

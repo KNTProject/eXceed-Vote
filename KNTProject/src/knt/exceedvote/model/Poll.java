@@ -1,6 +1,8 @@
 package knt.exceedvote.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 
@@ -16,7 +18,14 @@ public class Poll {
 	private String name;
 	private String description;
 	private Date deadline;
+	private Set<Team> teams = new HashSet<Team>(0);
 
+	public Set<Team> getTeams() {
+		return teams;
+	}
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
+	}
 	public Date getDeadline() {
 		return deadline;
 	}

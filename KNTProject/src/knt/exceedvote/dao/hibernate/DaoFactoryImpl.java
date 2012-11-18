@@ -17,7 +17,7 @@ public class DaoFactoryImpl extends DaoFactory{
 	private VoteDAO voteDao = null;
 	private TeamDAO teamDao = null;
 	private PollDAO pollDao = null;
-	private PollChoiceDAO pollChoiceDao = null;
+
 	
 	
 	public static DaoFactoryImpl getInstance() {
@@ -38,10 +38,7 @@ public class DaoFactoryImpl extends DaoFactory{
 		if (pollDao == null) pollDao = new PollDAOImpl();
 		return pollDao;
 	}
-	public PollChoiceDAO getPollChoiceDao(){
-		if (pollChoiceDao == null) pollChoiceDao = new PollChoiceDAOImpl();
-		return pollChoiceDao;
-	}
+
 	public TeamDAO getTeamDao(){
 		if (teamDao == null) teamDao = new TeamDAOImpl();
 		return teamDao;

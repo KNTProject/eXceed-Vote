@@ -14,9 +14,18 @@ public class UserSession {
 
 	String uid;
 	int typ;
-	List<Poll> novote;
+	List<Poll> notVotedYet;
 	List<Poll> voted;
+	List<Poll> allPolls;
 	DateTime countdown;
+	
+	public List<Poll> getAllPolls() {
+		return allPolls;
+	}
+	public void setAllPolls(List<Poll> allPolls) {
+		this.allPolls = allPolls;
+	}
+
 	
 	public DateTime getCountdown() {
 		return countdown;
@@ -24,11 +33,12 @@ public class UserSession {
 	public void setCountdown(DateTime countdown) {
 		this.countdown = countdown;
 	}
-	public List<Poll> getNovote() {
-		return novote;
+
+	public List<Poll> getNotVotedYet() {
+		return notVotedYet;
 	}
-	public void setNovote(List<Poll> novote) {
-		this.novote = novote;
+	public void setNotVotedYet(List<Poll> notVotedYet) {
+		this.notVotedYet = notVotedYet;
 	}
 	public List<Poll> getVoted() {
 		return voted;

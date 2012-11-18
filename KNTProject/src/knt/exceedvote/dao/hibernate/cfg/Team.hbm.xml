@@ -9,6 +9,15 @@
    <generator class="increment"/>
   </id>
   	<property name="name" column="name" />
+  	
+ 	<set name="polls" table="pollchoice" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="tid" not-null="true" />
+            </key>
+            <many-to-many entity-name="knt.exceedvote.model.Poll">
+                <column name="pid" not-null="true" />
+            </many-to-many>
+        </set>
 
  </class>
 </hibernate-mapping>

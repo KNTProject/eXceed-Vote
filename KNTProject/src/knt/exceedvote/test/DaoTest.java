@@ -46,7 +46,7 @@ public class DaoTest {
 		  VoteDAO vote = DaoFactory.getInstance("hibernate").getVoteDao();
 		  PollDAO poll = DaoFactory.getInstance("hibernate").getPollDao();
 
-		  List<Poll> pollid = poll.getPolls(null);
+		  List<Poll> pollid = poll.getAll();
 		  
 		  Vote ballot = new Vote(17, harry.getUid(), pollid.get(0).getPid(), 1, 1);
 		  vote.insertVote(ballot);

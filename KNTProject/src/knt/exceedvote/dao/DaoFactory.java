@@ -33,7 +33,6 @@ public abstract class DaoFactory {
 
 	public abstract UserDAO getUserDao();
 	public abstract PollDAO getPollDao();
-	public abstract PollChoiceDAO getPollChoiceDao();
 	public abstract TeamDAO getTeamDao();
 	public abstract VoteDAO getVoteDao();
 	

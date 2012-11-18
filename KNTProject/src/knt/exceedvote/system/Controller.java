@@ -12,12 +12,14 @@ import javax.servlet.http.*;
 import org.joda.time.DateTime;
 
 import knt.exceedvote.dao.DaoFactory;
+import knt.exceedvote.dao.PollDAO;
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
 import knt.exceedvote.dao.hibernate.UserDAOImpl;
 import knt.exceedvote.dao.hibernate.VoteDAOImpl;
 import knt.exceedvote.model.Login;
+import knt.exceedvote.model.Poll;
 import knt.exceedvote.model.Vote;
 
 /**
@@ -32,15 +34,8 @@ public class Controller extends HttpServlet {
    
    private UserDAO userDao;
    private VoteDAO voteDao;
+   private PollDAO pollDao;
    
-   
-  
- @Override
-public void init() throws ServletException {
-	super.init();
-	userDao = DaoFactory.getInstance("hibernate").getUserDao();
-	voteDao = DaoFactory.getInstance("hibernate").getVoteDao();
-}
 
 /**
   * doGet should do the same like toPost (its no difference)
@@ -62,7 +57,9 @@ public void init() throws ServletException {
    public void doPost(HttpServletRequest request,
          HttpServletResponse response) throws ServletException, IOException {
       // Retrieve the current session, or create a new session if no session exists.
-
+		userDao = DaoFactory.getInstance("hibernate").getUserDao();
+		voteDao = DaoFactory.getInstance("hibernate").getVoteDao();
+		pollDao = DaoFactory.getInstance("hibernate").getPollDao();
  
       // For dispatching the next Page
       String nextPage = "";
@@ -102,6 +99,9 @@ public void init() throws ServletException {
     	  }
 		   Login userObj = userDao.getUser(user);
     	  UserSession userobject = new UserSession();
+    	  userobject.setVoted(pollDao.getVoted(userObj));
+    	  userobject.setNotVotedYet(pollDao.getNotVotedYet(userObj));
+    	  userobject.setAllPolls(pollDao.getAll());
     	  userobject.setTyp(userobject.getTyp());
 		   userobject.setUid(user);
 		   DateTime countdown = Countdown.getDate();
@@ -151,8 +151,8 @@ public void init() throws ServletException {
     	  return;
       }
 	}
-	
-	session.setAttribute("pid", pid);
+	Poll poll = pollDao.getPoll(pid);
+	session.setAttribute("poll", poll);
 	nextPage = "/knt/jsp/voting.jsp";
 
       }
@@ -161,11 +161,11 @@ public void init() throws ServletException {
       if (todo.equals("voteteam")){
     	  
     	  int team = Integer.parseInt(request.getParameter("team").toString());
-    	  int pid = Integer.parseInt(session.getAttribute("pid").toString());
+    	  Poll poll = (Poll) session.getAttribute("poll");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
 
 
-    	  if(voteDao.insertVote(new Vote(userSession.getUid(), pid, team, 1))) {
+    	  if(voteDao.insertVote(new Vote(userSession.getUid(), poll.getPid(), team, 1))) {
     	  nextPage = "/knt/jsp/votemenu.jsp";
     	  } else {
     		  nextPage = "/knt/jsp/voting.jsp";

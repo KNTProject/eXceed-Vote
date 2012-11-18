@@ -7,11 +7,13 @@ import java.util.List;
 
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollDAO;
+import knt.exceedvote.model.Login;
 import knt.exceedvote.model.Poll;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -27,7 +29,7 @@ public class PollDAOImpl implements PollDAO {
 
 	
 	
-	public List<Poll> getPolls(Integer pid){
+	public Poll getPoll(int pid){
 
 		  Session session = null;
 
@@ -37,47 +39,16 @@ public class PollDAOImpl implements PollDAO {
 			
 			
 			  //Create new instance of Contact and set values in it by reading them from form object
-			List<Poll> polls = new ArrayList();
+			Poll poll;
 			
-			if (pid == null) {
-			//java.util.Date date = new Date();
-			//Timestamp timestamp = new Timestamp(date.getTime());
-			 polls = session.createCriteria(Poll.class)
-			//		 .add(Restrictions.gt("deadline", timestamp))
-					 .list();
-			} else
-			{
-			polls = session.createCriteria(Poll.class)
+
+			
+			poll = (Poll) session.createCriteria(Poll.class)
 				 .add(Restrictions.like("pid", pid))
-				 .list();	
+				 .uniqueResult();	
 				
 				
-			}
-			/*
-			else if(type.equals("with")){
-								
-				for(int i : pid){
-					Criteria criteria = session.createCriteria(Poll.class);
-						 criteria.add(Restrictions.like("pid", i));
-						 polls.add((Poll) criteria.list().get(0));
-				}
-				
-				
-				
-				}
-			else if(type.equals("notwith")){
-				
-					Criteria criteria = session.createCriteria(Poll.class);
-
-					for (int i : pid){
-					criteria.add(Restrictions.not(Restrictions.like("pid", i)));
-					}
-
-				polls = criteria.list();
-				
-				}
-			*/
-			return polls;
+			return poll;
 
 			  }catch(Exception e){
 				  Logger log = Logger.getLogger( PollDAOImpl.class );
@@ -90,8 +61,94 @@ public class PollDAOImpl implements PollDAO {
 			  session.close();
 			  
 			  }
+		  
+	}
+	
+	public List<Poll> getAll(){
 
+		  Session session = null;
+
+		  try{
+			  // This step will read hibernate.cfg.xml and prepare hibernate for use
+			  
+			session = getSession();
+			
+			
+			  //Create new instance of Contact and set values in it by reading them from form object
+
+				 List<Poll> ballots = session.createCriteria(Poll.class)
+						 .list();
+				
+			
+			return ballots;
+
+			  }catch(Exception e){
+				  Logger log = Logger.getLogger( PollDAOImpl.class );
+				  log.error(e);
+			  return null;
+			  
+			  }finally{
+			  // Actual contact insertion will happen at this step
+			  session.flush();
+			  session.close();
+			  
+			  }
+	}
+	
+	public List<Poll> getNotVotedYet(Login user){
+		  
+		Session session = null;
+
+		  try{
+			  
+		  
+		session = getSession();
+
+		String hql = "SELECT p FROM Poll p WHERE p.pid NOT IN (SELECT v.pid FROM Vote v WHERE v.uid =  :uid)";
+		Query query = session.createQuery(hql);
+		query.setParameter("uid", user.getUid());
+		List<Poll> polls = query.list();
+		return polls;
 		
+		  }catch(Exception e){
+			  Logger log = Logger.getLogger( PollDAOImpl.class );
+			  log.error(e);
+		  return null;
+		  
+		  }finally{
+		  // Actual contact insertion will happen at this step
+		  session.flush();
+		  session.close();
+		  
+		  }
+	}
+	
+	public List<Poll> getVoted(Login user){
+		  
+		Session session = null;
+
+		  try{
+			  
+		  
+		session = getSession();
+
+		String hql = "SELECT p FROM Poll p WHERE p.pid IN (SELECT v.pid FROM Vote v WHERE v.uid =  :uid)";
+		Query query = session.createQuery(hql);
+		query.setParameter("uid", user.getUid());
+		List<Poll> polls = query.list();
+		return polls;
+		
+		  }catch(Exception e){
+			  Logger log = Logger.getLogger( PollDAOImpl.class );
+			  log.error(e);
+		  return null;
+		  
+		  }finally{
+		  // Actual contact insertion will happen at this step
+		  session.flush();
+		  session.close();
+		  
+		  }
 	}
 
 	/**
@@ -105,5 +162,25 @@ public class PollDAOImpl implements PollDAO {
 		return session;
 	}
 	
+	public static void main (String args[]){
+		
+		PollDAO p = DaoFactory.getInstance("hibernate").getPollDao();
+		
+		Login l = new Login("harry", "1", 1, 1);
+		
+		List<Poll> polls = p.getNotVotedYet(l);
+		
+		for(Poll a : polls){
+			System.out.println(a.getPid() + " " + a.getName());
+		}
+		
+		System.out.println("-- break --");
+		List<Poll> polls2 = p.getVoted(l);
+		
+		for(Poll a : polls2){
+			System.out.println(a.getPid() + " " + a.getName());
+		}
+		
+	}
 
 }

@@ -165,15 +165,14 @@ function countdown(yr,m,d,hr,min){
         <li>
         <a href="index.html" onfocus="blur()">Main</a></li>
         </ul>
-		
+        
+
 		<div class="main">
 			<% 
-			PollDAO polldao = DaoFactoryImpl.getInstance().getPollDao();
 
 			
-			List<Poll> polls = polldao.getPolls(null);
 
-			for (Poll p : polls) {
+			for (Poll p : user.getAllPolls()) {
 			
 			%>
 			

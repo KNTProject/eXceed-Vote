@@ -1,5 +1,5 @@
 <%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl"%>
-<%@page import="knt.exceedvote.model.PollChoice"%>
+<%@page import="java.util.Iterator" import="knt.exceedvote.system.UserSession"%>
 <%@page import="knt.exceedvote.dao.*" import="knt.exceedvote.model.*" import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,31 +12,29 @@
 <body>
 
 <h1>Simple Vote</h1>
+
 <form name="vote" action="vote" method="POST">
 <input type="hidden" name="todo" value="voteteam">
-
 <%
-	int pid = Integer.parseInt(session.getAttribute("pid").toString());
-session.setAttribute("pid", pid);
-
-
-PollChoiceDAO voteDao = DaoFactoryImpl.getInstance().getPollChoiceDao();
-TeamDAO teamdao = DaoFactoryImpl.getInstance().getTeamDao();
-
-
-List<PollChoice> teams = voteDao.getChoices(pid);
-
-for (PollChoice p : teams){
+UserSession user = (UserSession) session.getAttribute("user");
+if (user != null) {
 	
-	List<Team> team = teamdao.getTeam(p.getTid());	
-	if (team.get(0) == null){} else {
-%>
+}
+	Poll poll = (Poll) session.getAttribute("poll");
 
-    <input type="radio" name="team" value="<%=team.get(0).getTid()%>"><%=team.get(0).getName()%><br>
+	Iterator<Team> teams = poll.getTeams().iterator();
+
+while(teams.hasNext()){
+	Team team = teams.next();
+
+	%>
+
+
+    <input type="radio" name="team" value="<%=team.getTid()%>"><%=team.getName()%><br>
 
 <% 
 	}
-}
+
 %>
 <br><br>
         <input type="submit" value="Choose this Team">
