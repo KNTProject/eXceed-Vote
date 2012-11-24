@@ -2,6 +2,8 @@ package knt.exceedvote.dao;
 
 import java.util.List;
 
+import knt.exceedvote.model.Login;
+import knt.exceedvote.model.Poll;
 import knt.exceedvote.model.Vote;
 
 public interface VoteDAO {
@@ -24,4 +26,10 @@ public interface VoteDAO {
 	public List<Vote> getVotes(String uid);
 
 	public Vote getVote(int vid);
+	
+	public Vote checkVote(String uid, Poll poll);
+	
+	public boolean updateVote(Vote vote);
+
+	public boolean deleteVote(Login user, int pid);
 }

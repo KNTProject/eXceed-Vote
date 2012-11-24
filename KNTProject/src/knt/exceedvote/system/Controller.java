@@ -11,6 +11,8 @@ import javax.servlet.http.*;
 
 import org.joda.time.DateTime;
 
+import com.sun.media.sound.AlawCodec;
+
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollDAO;
 import knt.exceedvote.dao.UserDAO;
@@ -36,6 +38,7 @@ public class Controller extends HttpServlet {
    private VoteDAO voteDao;
    private PollDAO pollDao;
    
+
 
 /**
   * doGet should do the same like toPost (its no difference)
@@ -65,7 +68,7 @@ public class Controller extends HttpServlet {
       String nextPage = "";
       String todo = request.getParameter("todo");
       HttpSession session = request.getSession(true);
-      
+
       //Handle login and authentification to the website
       if (todo.equals("login")){
     	 
@@ -102,18 +105,19 @@ public class Controller extends HttpServlet {
     	  userobject.setVoted(pollDao.getVoted(userObj));
     	  userobject.setNotVotedYet(pollDao.getNotVotedYet(userObj));
     	  userobject.setAllPolls(pollDao.getAll());
-    	  userobject.setTyp(userobject.getTyp());
-		   userobject.setUid(user);
+		   userobject.setUser(userObj);
 		   DateTime countdown = Countdown.getDate();
 		   if (countdown != null) userobject.setCountdown(countdown);
 		   else userobject.setCountdown(new DateTime(2099, 01, 01, 0, 0));
 		 
 		   session.setAttribute("user", userobject);
-
+ 		  Logging.login(request.getRemoteAddr() , userObj);
     	  if(userObj.getFirstlogin() == 1){
     		  System.out.println("first login");
     		   nextPage = "/knt/jsp/changepw.jsp";
     		  response.sendRedirect(nextPage);
+
+    		  
     		  return;
     	  }
 
@@ -128,7 +132,7 @@ public class Controller extends HttpServlet {
       if(todo.equals("changepw")){
     	  String password = request.getParameter("password");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
-    	  if(userDao.updatetUser(new Login(userSession.getUid(), password, userSession.getTyp(), 0))) nextPage = "/knt/jsp/votemenu.jsp"; 
+    	  if(userDao.updatetUser(new Login(userSession.getUser().getUid(), password, userSession.getUser().getTyid(), 0))) nextPage = "/knt/jsp/votemenu.jsp"; 
     	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }
       
@@ -163,16 +167,23 @@ public class Controller extends HttpServlet {
     	  int team = Integer.parseInt(request.getParameter("team").toString());
     	  Poll poll = (Poll) session.getAttribute("poll");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
-
-
-    	  if(voteDao.insertVote(new Vote(userSession.getUid(), poll.getPid(), team, 1))) {
+    	  Vote alreadyvoted = voteDao.checkVote(userSession.getUser().getUid(), poll);
+    	  
+    	  if(alreadyvoted != null) {
+    		  alreadyvoted.setTid(team);
+    		  if(voteDao.updateVote(alreadyvoted)) {
+    	    	  nextPage = "/knt/jsp/votemenu.jsp";
+    	    	  session.removeAttribute("poll");
+    	    	  } else {
+    	    		  nextPage = "/knt/jsp/voting.jsp";
+    	    	  }  
+      } else if(voteDao.insertVote(new Vote(userSession.getUser().getUid(), poll.getPid(), team, 1))) {
     	  nextPage = "/knt/jsp/votemenu.jsp";
-    	  } else {
+    	  session.removeAttribute("poll");
+    	  userSession.setVoted(pollDao.getVoted(userSession.getUser()));
+    	  userSession.setNotVotedYet(pollDao.getNotVotedYet(userSession.getUser()));
+      } else 
     		  nextPage = "/knt/jsp/voting.jsp";
-    	  }
-    	  
-    	  
-    	  
       }
       
       //Handle the registration for a new user
@@ -182,9 +193,20 @@ public class Controller extends HttpServlet {
     		if(userDao.insertUser(kuid)) nextPage = "login.jsp";
     		else nextPage = "register.jsp";
 }
+      
+      if (todo.equals("delete")){
+  		int pid = Integer.parseInt(request.getParameter("pollid"));
+  	  UserSession userSession = (UserSession) session.getAttribute("user");
+
+	  voteDao.deleteVote(userSession.getUser(), pid);
+	  userSession.setVoted(pollDao.getVoted(userSession.getUser()));
+	  userSession.setNotVotedYet(pollDao.getNotVotedYet(userSession.getUser()));
+		  nextPage = "voted.jsp";
+      }
       // Send the next website, should never been 'null' here
          response.sendRedirect(nextPage);
          return;
 
    }
+   
 }

@@ -3,7 +3,7 @@
 import="knt.exceedvote.system.UserSession" import="org.joda.time.DateTime"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-            <%
+        <%
 	UserSession user = (UserSession) session.getAttribute("user");
 	if (user == null) {
 		response.sendRedirect("/knt/jsp/login.jsp");
@@ -146,8 +146,7 @@ function countdown(yr,m,d,hr,min){
 <title>Insert title here</title>
 </head>
 <%
-
-	DateTime cd = user.getCountdown();
+DateTime cd = user.getCountdown();
 %>
 <body onload="countdown(<%=cd.getYear() %>,<%= cd.getMonthOfYear() %>,<%=cd.getDayOfMonth() %>,<%=cd.getHourOfDay() %>,<%=cd.getMinuteOfHour()%>)">
 
@@ -167,18 +166,18 @@ function countdown(yr,m,d,hr,min){
         <a href="project.html" onfocus="blur()">Projects</a></li>
         <li>
         <a href="index.html" onfocus="blur()">Main</a></li>
-       
-	<li><a href="notvoted.jsp">Not yet voted</a></li>
-	<li><a href="voted.jsp">Already voted</a></li>        
-	<li><a href="votemenu.jsp">All</a></li>        
+       	<li><a href="notvoted.jsp">Not yet voted</a></li>
+		<li><a href="voted.jsp">Already voted</a></li>        
+		<li><a href="votemenu.jsp">All</a></li>        
 	 </ul>
+        
 
 		<div class="main">
 			<% 
 
 			
 
-			for (Poll p : user.getAllPolls()) {
+			for (Poll p : user.getNotVotedYet()) {
 			
 			%>
 			
@@ -203,12 +202,10 @@ function countdown(yr,m,d,hr,min){
           </div>
          </div>
          
-         
+         <%	} %>
          
          <!-- /bluebox-->
-			<% 	
-			}
-			%>
+		
 			
 			
 			
@@ -241,4 +238,4 @@ function countdown(yr,m,d,hr,min){
 
 </body>
 </html>
-<% } %>
+<%	} %>

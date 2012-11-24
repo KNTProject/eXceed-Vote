@@ -4,6 +4,8 @@ package knt.exceedvote.dao.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.model.Login;
@@ -12,10 +14,13 @@ import knt.exceedvote.model.Vote;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -161,7 +166,119 @@ public class VoteDAOImpl implements VoteDAO {
 			  }
 
 	}
+	
+	@Override
+	public Vote checkVote(String user, Poll poll) {
+		// TODO Auto-generated method stub
+		  Session session = getSession();
+
+		  try{
+			  
+		  Criteria criteria = session.createCriteria(Vote.class);
+
+		  Criterion uid = Restrictions.like("uid", user);
+		  Criterion pid = Restrictions.like("pid", poll.getPid());
+			  
+	        LogicalExpression expression = Restrictions.and(uid, pid);
+	        
+			criteria.add(expression);
+	        List<Vote> vote = criteria.list();
+			if (vote == null) return null;
+	        if (vote.size() > 0) return vote.get(0);
+	        else return null;
 		
+		
+	  }catch(Exception e){
+
+	  Logger log = Logger.getLogger( VoteDAOImpl.class );
+	  log.error(e);
+	  return null;
+	  
+	  
+	  }finally{
+	  // Clean connection
+	  session.flush();
+	  // Close connection
+	  session.close();
+	  
+	  }
+		
+	}
+	
+	
+
+	@Override
+	public boolean updateVote(Vote vote) {
+
+		  Session session = getSession();
+
+		  try{
+			  Transaction tr = session.beginTransaction();
+
+			  session.update(vote);
+			  tr.commit();
+
+			  return true;
+			  
+			  
+	
+	  }catch(Exception e){
+		  
+	  Logger log = Logger.getLogger( VoteDAOImpl.class );
+	  log.error(e);
+	  return false;
+	  
+	  
+	  }finally{
+	  // Clean connection
+	  session.flush();
+	  // Close connection
+	  session.close();
+	  
+	  }
+	
+	}
+	
+	public boolean deleteVote(Login user, int pid){
+		
+		  Session session = getSession();
+		  try{
+			  Transaction transaction = session.beginTransaction();
+			  String hql = "delete from Vote where uid= :uid AND pid= :pid";
+			  Query query = session.createQuery(hql);
+			  query.setString("uid", user.getUid());
+			  query.setInteger("pid", pid);
+			  query.executeUpdate();
+			  transaction.commit();
+			  return true;
+		
+	  }catch(Exception e){
+		  
+	  Logger log = Logger.getLogger( VoteDAOImpl.class );
+	  log.error(e);
+	  return false;
+	  
+	  
+	  }finally{
+	  // Clean connection
+	  session.flush();
+	  // Close connection
+	  session.close();
+	  
+	  }
+	
+		
+	}
+	
+	
+	
+	public static void main (String args[]){
+		
+
+		VoteDAO v = DaoFactory.getInstance("hibernate").getVoteDao();
+		System.out.println(v.deleteVote(new Login("123", "", 1, 1), 1));
+		
+	}
 	
 
 	/**
@@ -171,6 +288,11 @@ public class VoteDAOImpl implements VoteDAO {
 		Session session =DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
 	}
+
+
+
+
+
 	
 
 }

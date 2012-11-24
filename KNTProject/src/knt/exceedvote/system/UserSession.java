@@ -12,8 +12,7 @@ import knt.exceedvote.model.*;
  */
 public class UserSession {
 
-	String uid;
-	int typ;
+	Login user;
 	List<Poll> notVotedYet;
 	List<Poll> voted;
 	List<Poll> allPolls;
@@ -47,17 +46,12 @@ public class UserSession {
 		this.voted = voted;
 	}
 	
-	public String getUid() {
-		return uid;
+	public Login getUser() {
+		return user;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setUser(Login user) {
+		this.user = user;
 	}
-	public int getTyp() {
-		return typ;
-	}
-	public void setTyp(int typ) {
-		this.typ = typ;
-	}
+
 	
 }

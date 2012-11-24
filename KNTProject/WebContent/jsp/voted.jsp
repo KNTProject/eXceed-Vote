@@ -167,18 +167,19 @@ function countdown(yr,m,d,hr,min){
         <a href="project.html" onfocus="blur()">Projects</a></li>
         <li>
         <a href="index.html" onfocus="blur()">Main</a></li>
-       
-	<li><a href="notvoted.jsp">Not yet voted</a></li>
-	<li><a href="voted.jsp">Already voted</a></li>        
-	<li><a href="votemenu.jsp">All</a></li>        
+        
+       	<li><a href="notvoted.jsp">Not yet voted</a></li>
+		<li><a href="voted.jsp">Already voted</a></li>        
+		<li><a href="votemenu.jsp">All</a></li>        
 	 </ul>
+        
 
 		<div class="main">
 			<% 
 
 			
 
-			for (Poll p : user.getAllPolls()) {
+			for (Poll p : user.getVoted()) {
 			
 			%>
 			
@@ -195,6 +196,13 @@ function countdown(yr,m,d,hr,min){
      		</form>
             <p>
             <%=p.getDescription() %> </p>
+            
+                 <form name="delete" action="delete" method="POST">
+		         <input type="hidden" name="todo" value="delete">
+				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">				
+      			<input type="submit" value="Delete">
+        		 
+     		</form>
             
           </div>
           <!-- /right-->

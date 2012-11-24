@@ -1,15 +1,19 @@
 <%@page import="knt.exceedvote.system.UserSession"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%
+	UserSession user = (UserSession) session.getAttribute("user");
+	if (user != null) {
+		response.sendRedirect("/knt/jsp/votemenu.jsp");
+	} else {
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>eXceed Vote Login</title>
 
-<%
-	UserSession user = (UserSession) session.getAttribute("user");
-%>
+
 </head>
 <body>
 eXceed Vote Register <br><br>
@@ -28,3 +32,4 @@ You receive a password for your login.
 <a href="login.jsp">back</a>
 </body>
 </html>
+<% } %>
