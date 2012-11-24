@@ -1,8 +1,18 @@
 package knt.exceedvote.model;
 
-import java.util.Date;
+
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.imageio.ImageIO;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 
 
@@ -17,20 +27,21 @@ public class Poll {
 	private int pid;
 	private String name;
 	private String description;
-	private Date deadline;
+	private String image;
 	private Set<Team> teams = new HashSet<Team>(0);
 
 	public Set<Team> getTeams() {
 		return teams;
 	}
+
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
-	public Date getDeadline() {
-		return deadline;
+	public String getImage() {
+		return image;
 	}
-	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public int getPid() {
 		return pid;

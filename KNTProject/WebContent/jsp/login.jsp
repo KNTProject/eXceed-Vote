@@ -24,7 +24,7 @@ eXceed Vote Login <br><br>
 User:<input type="text" name="user" /> <br><br>
 Password:<input type="password" name="password" />
 <br>
-        <input type="submit" onClick="Check()" value="Login">
+        <input type="submit" value="Login">
       </form>
       <br>
 <a href="register.jsp">Registration</a>

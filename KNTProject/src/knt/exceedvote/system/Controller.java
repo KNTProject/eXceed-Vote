@@ -37,17 +37,7 @@ public class Controller extends HttpServlet {
    private UserDAO userDao;
    private VoteDAO voteDao;
    private PollDAO pollDao;
-   
 
-
-/**
-  * doGet should do the same like toPost (its no difference)
-  */
-   @Override
-   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
-      doPost(request, response);  // Same as doPost()
-   }
  
    /**
     * Main method in this class. It handles in- and output to webpages
@@ -68,7 +58,12 @@ public class Controller extends HttpServlet {
       String nextPage = "";
       String todo = request.getParameter("todo");
       HttpSession session = request.getSession(true);
-
+      System.out.println(todo);
+      if (todo == null){
+    	  nextPage = "/knt/jsp/login.jsp";
+    	  response.sendRedirect(nextPage);
+    	 return;
+      }
       //Handle login and authentification to the website
       if (todo.equals("login")){
     	 
@@ -123,7 +118,7 @@ public class Controller extends HttpServlet {
 
     if (userobject.getCountdown().isAfter(new DateTime()) ) nextPage = "/knt/jsp/votemenu.jsp";
     else nextPage = "/knt/jsp/results.jsp";
-
+    
 	response.sendRedirect(nextPage);
 	return;
       }

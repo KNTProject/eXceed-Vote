@@ -1,11 +1,13 @@
-<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl"%>
-<%@page import="knt.exceedvote.dao.*" import="knt.exceedvote.model.Poll" import="java.util.List" 
-import="knt.exceedvote.system.UserSession" import="org.joda.time.DateTime"%>
+<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl,knt.exceedvote.dao.*,knt.exceedvote.model.Poll,java.util.List"
+import="knt.exceedvote.system.UserSession,org.joda.time.DateTime,java.sql.Blob,java.io.*"
+
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
             <%
 	UserSession user = (UserSession) session.getAttribute("user");
 	if (user == null) {
+		out.println("empty");
 		response.sendRedirect("/knt/jsp/login.jsp");
 	} else {
 %>
@@ -180,12 +182,13 @@ function countdown(yr,m,d,hr,min){
 
 			for (Poll p : user.getAllPolls()) {
 			
+
 			%>
 			
 		
 			<div class="bluebox">
           <a href="#" class="big">
-            <img src="./images/<%=p.getName()%>.jpg" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/jsp/imagestore/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">

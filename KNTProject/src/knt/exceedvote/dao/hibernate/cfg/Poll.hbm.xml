@@ -10,8 +10,7 @@
   </id>
   	<property name="name" column="name" />
 	<property name="description" column="description" />
- 	<property name="deadline" type="timestamp" column="deadline" />
- 	
+ 	<property name="image" column="image" />
 	<set name="teams" table="pollchoice" 
         	inverse="false" lazy="false" fetch="select" cascade="all" >
             <key>
