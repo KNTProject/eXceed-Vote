@@ -8,6 +8,11 @@
 	if (user == null) {
 		response.sendRedirect("/knt/jsp/login.jsp");
 	} else {
+
+		Poll poll = (Poll) session.getAttribute("poll");
+		if (poll == null) {
+			response.sendRedirect("/knt/jsp/votemenu.jsp");
+		} else {
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,7 +28,6 @@
 <input type="hidden" name="todo" value="voteteam">
 <%
 
-	Poll poll = (Poll) session.getAttribute("poll");
 
 	Iterator<Team> teams = poll.getTeams().iterator();
 
@@ -48,4 +52,4 @@ while(teams.hasNext()){
 
 </body>
 </html>
-<% } %>
+<% } } %>
