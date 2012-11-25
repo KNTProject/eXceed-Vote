@@ -127,6 +127,15 @@ public class Controller extends HttpServlet {
       if(todo.equals("changepw")){
     	  String password = request.getParameter("password");
     	  UserSession userSession = (UserSession) session.getAttribute("user");
+    	  try {
+			password = PasswordHash.createHash(password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	  if(userDao.updatetUser(new Login(userSession.getUser().getUid(), password, userSession.getUser().getTyid(), 0))) nextPage = "/knt/jsp/votemenu.jsp"; 
     	  else nextPage = "/knt/jsp/changepw.jsp"; 
       }

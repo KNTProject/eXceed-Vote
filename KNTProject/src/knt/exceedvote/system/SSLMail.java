@@ -96,7 +96,7 @@ public class SSLMail {
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(recevier + mailpath));
 			message.setSubject("eXceed Vote Registration");
-			message.setText("Dear UserSession," +
+			message.setText("Dear User," +
 					"\n\n This is a message for eXceed Vote registration!" +
 					"\n\n Your password is: " + password + 
 					"\n\n At your first login you must change the password!" +
