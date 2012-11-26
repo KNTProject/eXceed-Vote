@@ -13,12 +13,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>eXceed Vote Login</title>
+<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-eXceed Vote Login <br><br>
+<section class="loginform cf">
+		<form name="login" action="login" method="POST" accept-charset="utf-8">
+		<input type="hidden" name="todo" value="login">
+			<ul>
+				<li>
+					<h1>Username</h1>
+					<input type="text" name="user" placeholder="username" required>
+				</li>
+				<li>
+					<h1>Password</h1>
+					<input type="password" name="password" placeholder="password" required>
+				</li>
+				<div style="">
+				<li>
+					
+				</li>
+				<li>
+					<input type="submit" value="Login">
+					<a href="register.jsp"><input type="submit" value="Register"></a>
+				</li>
+				</div>
+			</ul>
+		</form>
+	</section>
 
-
-      <form name="login" action="login" method="POST">
+<!-- <form name="login" action="login" method="POST">
          <input type="hidden" name="todo" value="login">
          
 User:<input type="text" name="user" /> <br><br>
@@ -27,7 +51,8 @@ Password:<input type="password" name="password" />
         <input type="submit" value="Login">
       </form>
       <br>
-<a href="register.jsp">Registration</a>
+<a href="register.jsp">Registration</a> -->
+      
 
 
 </body>

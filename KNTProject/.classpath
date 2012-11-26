@@ -28,5 +28,13 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/joda-time-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="D:/My Software/eclipse file/eXceed-Vote2/KNTProject/WebContent/WEB-INF/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/My Software/eclipse file/eXceed-Vote2/KNTProject/WebContent/WEB-INF/lib/hibernate-core-4.1.7.Final.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.4.1 - Juno">
+		<attributes>
+			<attribute name="owner.project.facets" value="jpt.jpa"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
