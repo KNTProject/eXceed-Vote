@@ -20,9 +20,8 @@ import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
 import knt.exceedvote.dao.hibernate.UserDAOImpl;
 import knt.exceedvote.dao.hibernate.VoteDAOImpl;
-import knt.exceedvote.model.Login;
-import knt.exceedvote.model.Poll;
-import knt.exceedvote.model.Vote;
+import knt.exceedvote.model.*;
+
 
 /**
  * This class is the Controller which handels the requests and returns from jsp pages
@@ -97,30 +96,37 @@ public class Controller extends HttpServlet {
     	  }
 		   Login userObj = userDao.getUser(user);
     	  UserSession userobject = new UserSession();
+		  session.setAttribute("user", userobject);
+		  Logging.login(request.getRemoteAddr() , userObj);
+		  userobject.setUser(userObj);
+		   
+    	  	if (userObj.getTyid() == 2) {
+    	  		 nextPage = "/knt/jsp/ecadmin.jsp";
+    	  		 
+    	         response.sendRedirect(nextPage);
+    	         return;
+    	  	} else {
+    	  		
     	  userobject.setVoted(pollDao.getVoted(userObj));
     	  userobject.setNotVotedYet(pollDao.getNotVotedYet(userObj));
     	  userobject.setAllPolls(pollDao.getAll());
-		   userobject.setUser(userObj);
 		   DateTime countdown = Countdown.getDate();
 		   if (countdown != null) userobject.setCountdown(countdown);
 		   else userobject.setCountdown(new DateTime(2099, 01, 01, 0, 0));
 		 
-		   session.setAttribute("user", userobject);
- 		  Logging.login(request.getRemoteAddr() , userObj);
+
     	  if(userObj.getFirstlogin() == 1){
     		  System.out.println("first login");
     		   nextPage = "/knt/jsp/changepw.jsp";
     		  response.sendRedirect(nextPage);
-
-    		  
     		  return;
     	  }
 
     if (userobject.getCountdown().isAfter(new DateTime()) ) nextPage = "/knt/jsp/votemenu.jsp";
     else nextPage = "/knt/jsp/results.jsp";
-    
-	response.sendRedirect(nextPage);
-	return;
+    response.sendRedirect(nextPage);
+    return;
+  	}
       }
 
       //Change pw
@@ -137,7 +143,9 @@ public class Controller extends HttpServlet {
 			e.printStackTrace();
 		}
     	  if(userDao.updatetUser(new Login(userSession.getUser().getUid(), password, userSession.getUser().getTyid(), 0))) nextPage = "/knt/jsp/votemenu.jsp"; 
-    	  else nextPage = "/knt/jsp/changepw.jsp"; 
+    	  else nextPage = "/knt/jsp/changepw.jsp";
+          response.sendRedirect(nextPage);
+          return;
       }
       
       //Handle the choose of a poll
@@ -147,22 +155,24 @@ public class Controller extends HttpServlet {
     	  String pollid = request.getParameter("pollid");
     	  int pid = 0;
 	if(pollid == null){
-		nextPage = "badPID";
-		return;
+		nextPage = "votemenu.jsp";
+        response.sendRedirect(nextPage);
+        return;
 	}else
 	{
     	  try{
     		  pid = Integer.parseInt(pollid);
       } catch (Exception e) {
-    	  System.out.println(e);
-    	  nextPage = "badPID";
-    	  return;
+  		nextPage = "votemenu.jsp";
+        response.sendRedirect(nextPage);
+        return;
       }
 	}
 	Poll poll = pollDao.getPoll(pid);
 	session.setAttribute("poll", poll);
 	nextPage = "/knt/jsp/voting.jsp";
-
+    response.sendRedirect(nextPage);
+    return;
       }
       
       //Handle the voting
@@ -178,24 +188,41 @@ public class Controller extends HttpServlet {
     		  if(voteDao.updateVote(alreadyvoted)) {
     	    	  nextPage = "/knt/jsp/votemenu.jsp";
     	    	  session.removeAttribute("poll");
+    	    	  response.sendRedirect(nextPage);
+    	          return;
+    	    	  
     	    	  } else {
     	    		  nextPage = "/knt/jsp/voting.jsp";
+        	    	  response.sendRedirect(nextPage);
+        	          return;
     	    	  }  
       } else if(voteDao.insertVote(new Vote(userSession.getUser().getUid(), poll.getPid(), team, 1))) {
-    	  nextPage = "/knt/jsp/votemenu.jsp";
+
     	  session.removeAttribute("poll");
     	  userSession.setVoted(pollDao.getVoted(userSession.getUser()));
     	  userSession.setNotVotedYet(pollDao.getNotVotedYet(userSession.getUser()));
+    	  nextPage = "/knt/jsp/votemenu.jsp";
+    	  response.sendRedirect(nextPage);
+          return;
       } else 
     		  nextPage = "/knt/jsp/voting.jsp";
+    	  response.sendRedirect(nextPage);
+          return;
       }
       
       //Handle the registration for a new user
       if (todo.equals("register")){
     		
     		String kuid = request.getParameter("kuid");
-    		if(userDao.insertUser(kuid)) nextPage = "login.jsp";
-    		else nextPage = "register.jsp";
+    		if(userDao.insertUser(kuid)) { 
+    			nextPage = "login.jsp";
+	      	  response.sendRedirect(nextPage);
+	          return;
+    		} else { 
+			nextPage = "register.jsp";
+      	  response.sendRedirect(nextPage);
+          return;
+    		}
 }
       
       if (todo.equals("delete")){
@@ -206,8 +233,28 @@ public class Controller extends HttpServlet {
 	  userSession.setVoted(pollDao.getVoted(userSession.getUser()));
 	  userSession.setNotVotedYet(pollDao.getNotVotedYet(userSession.getUser()));
 		  nextPage = "voted.jsp";
+    	  response.sendRedirect(nextPage);
+          return;
       }
-      // Send the next website, should never been 'null' here
+      if (todo.equals("addpoll")){
+    	  System.out.println("im here");
+    	String pname = request.getParameter("name");
+		String description = request.getParameter("description");
+    		  
+    		if(pollDao.addPoll(new Poll(pname, description))) {
+    	       	nextPage = "addteam.jsp";
+    	         response.sendRedirect(nextPage);
+    	         return;	
+    		} else {
+	       	nextPage = "addpoll.jsp";
+   	         response.sendRedirect(nextPage);
+   	         return;	
+    		}
+
+    	  
+      }
+      System.out.println("im bad");
+       	nextPage = "login.jsp";
          response.sendRedirect(nextPage);
          return;
 

@@ -43,14 +43,12 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public boolean insertVote(Vote newVote){
 		
-		  // Always set null to avoid problems
+		  
 		  Session session = getSession();
 
 		  try{
 			  
-				// This step will read hibernate.cfg.xml and prepare hibernate for use
-				@SuppressWarnings("deprecation")
-				//session = getSession();
+
 				
 				
 				//Begin the db input

@@ -12,4 +12,5 @@ public interface PollDAO {
 	public List<Poll> getAll();
 	public List<Poll> getVoted(Login user);
 	public List<Poll> getNotVotedYet(Login user);
+	public boolean addPoll(Poll poll);
 }

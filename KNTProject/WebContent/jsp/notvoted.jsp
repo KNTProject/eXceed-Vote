@@ -184,7 +184,7 @@ DateTime cd = user.getCountdown();
 		
 			<div class="bluebox">
           <a href="#" class="big">
-            <img src="./images/<%=p.getName()%>.jpg" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/jsp/imagestore/pollimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">

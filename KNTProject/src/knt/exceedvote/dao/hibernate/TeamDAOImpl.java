@@ -26,7 +26,7 @@ public class TeamDAOImpl implements TeamDAO {
 	 * @see knt.exceedvote.dao.hibernate.TeamDAO#getTeam(java.lang.Integer)
 	 */
 	@Override
-	public List<Team> getTeam(Integer tid){
+	public List<Team> getTeams(){
 
 		  Session session = null;
 
@@ -38,7 +38,6 @@ public class TeamDAOImpl implements TeamDAO {
 			  //Create new instance of Contact and set values in it by reading them from form object
 
 				 List<Team> team = session.createCriteria(Team.class)
-						 .add(Restrictions.like("tid", tid))
 						 .list();
 				
 			

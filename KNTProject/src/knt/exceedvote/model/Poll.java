@@ -30,6 +30,13 @@ public class Poll {
 	private String image;
 	private Set<Team> teams = new HashSet<Team>(0);
 
+	public Poll() { }
+	public Poll(String name, String description){
+		this.name = name;
+		this.description = description;
+	}
+	
+	
 	public Set<Team> getTeams() {
 		return teams;
 	}

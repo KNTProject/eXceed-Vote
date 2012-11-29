@@ -6,6 +6,6 @@ import knt.exceedvote.model.Team;
 
 public interface TeamDAO {
 
-	public List<Team> getTeam(Integer tid);
+	public List<Team> getTeams();
 
 }
