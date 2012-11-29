@@ -142,7 +142,7 @@ function countdown(yr,m,d,hr,min){
     <meta name="author" content="www.studio7designs.com" />
     <meta name="robots" content="all, follow" />
     <meta name="googlebot" content="index, follow, snippet, archive" />
-    <link rel="stylesheet" href="./stylesheets/screen.css" type="text/css"  media="screen, projection" />
+    <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>

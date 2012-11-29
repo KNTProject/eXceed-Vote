@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="knt.exceedvote.model.Vote" table="votes">
+   <id name="vid" column="vid" >
+   <generator class="increment"/>
+  </id>
+  	<property name="pid" column="pid" />
+	<property name="uid" column="uid" />
+	<property name="tid" column="tid" />
+	<property name="votes" column="votes" />
+	
+
+ </class>
+</hibernate-mapping>

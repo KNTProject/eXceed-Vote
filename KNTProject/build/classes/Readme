@@ -1,0 +1,15 @@
+This is eXceed vote project.
+
+To run:
+1. Run tomcat
+1.1 use server.xml in doc/tomcat and copy to tomcatdir/conf (overwrite old one)
+1.2 use .keystore file in doc/tomcat and copy to tomcatdir (root)
+2. Export project to knt.war file (name must be knt)
+3. copy .war file to tomcatdir/webapps
+4. Import database
+4.1 Start XAMPP Control
+4.1.1 Start Apache
+4.1.2 Start MySQL
+4.2 Open http://localhost/phpmyadmin
+4.3 Goto Import database and import exceed database
+5. Open https://localhost:8433/knt/login.jsp
