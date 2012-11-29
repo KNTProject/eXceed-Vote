@@ -24,7 +24,7 @@
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/imagestore/*</url-pattern>
+        <url-pattern>/filestore/*</url-pattern>
     </servlet-mapping>
    
    

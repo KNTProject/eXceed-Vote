@@ -13,8 +13,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>eXceed Vote Login</title>
-<link rel="stylesheet" href="normalize.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/knt/filestore/css/normalize.css">
+<link rel="stylesheet" href="/knt/filestore/css/style.css">
 </head>
 <body>
 <section class="loginform cf">
@@ -35,7 +35,7 @@
 				</li>
 				<li>
 					<input type="submit" value="Login">
-					<a href="register.jsp"><input type="submit" value="Register"></a>
+					<a href="register.jsp"><input type="button" value="Register"></a>
 				</li>
 				</div>
 			</ul>
