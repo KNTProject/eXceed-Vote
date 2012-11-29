@@ -12,14 +12,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>eXceed Vote Login</title>
-
-
+<link rel="stylesheet" href="/knt/filestore/css/normalize.css">
+<link rel="stylesheet" href="/knt/filestore/css/style.css">
 </head>
 <body>
-eXceed Vote Register <br><br>
+<section class="loginform cf">
+		<form name="register" action="register" method="POST" accept-charset="utf-8">
+		<input type="hidden" name="todo" value="register">
+			<ul>
+				<li>
+					<h1>KU ID</h1>
+					<input type="text" name="kuid" placeholder="ku id" required>
+				</li>
+				<div style="">
+				<li>
+					
+				</li>
+				<li>
+					<input type="submit" value="Register">
+					<a href="login.jsp"><input type="button" value="Back to Login"></a>
+				</li>
+				</div>
+			</ul>
+		</form>
+	</section>
 
-
-      <form name="register" action="register" method="POST">
+<!-- eXceed Vote Register <br><br>    
+  <form name="register" action="register" method="POST">
          <input type="hidden" name="todo" value="register">
          
 KU User ID:<input type="text" name="kuid" /> <br><br>
@@ -29,7 +48,8 @@ KU User ID:<input type="text" name="kuid" /> <br><br>
       <br>
 You receive a password for your login.
 <br>
-<a href="login.jsp">back</a>
+<a href="login.jsp">back</a> -->
+
 </body>
 </html>
 <% } %>
