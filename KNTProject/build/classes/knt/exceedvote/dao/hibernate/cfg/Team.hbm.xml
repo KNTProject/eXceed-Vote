@@ -9,6 +9,10 @@
    <generator class="increment"/>
   </id>
   	<property name="name" column="name" />
+  	<property name="image1" column="image1" />
+  	<property name="image2" column="image2" />
+  	<property name="image3" column="image3" />
+  	
   	
  	<set name="polls" table="pollchoice" inverse="true" lazy="false" fetch="select">
             <key>

@@ -3,13 +3,13 @@
 	padding: 0;
 }
 html {
-	background: #fff url("/knt/filestore/pollimage/html.png") repeat-x left top;
+	background: #fff url("/knt/filestore/templateimage/html.png") repeat-x left top;
 }
 body {
 	font-family: arial, sans-serif;
 	font-size: 12px;
 	color: #888888;
-	background: url("/knt/filestore/pollimage/body.png") repeat-y left top;
+	background: url("/knt/filestore/templateimage/body.png") repeat-y left top;
 	width: 1000px;
 	margin: 0 auto 30px auto;
 	position: relative;
@@ -36,7 +36,7 @@ h2 {
 	font-size: 12px;
 }
 .page {
-	background: url("/knt/filestore/pollimage/page.jpg") no-repeat left top;
+	background: url("/knt/filestore/templateimage/page.jpg") no-repeat left top;
 	padding: 28px 125px 0 115px;
 	width: 760px;
 }
@@ -63,11 +63,11 @@ h2 {
 	top: 0;
 	width: 760px;
 	height: 300px;
-	background: url("/knt/filestore/pollimage/h1.png") no-repeat left top;
+	background: url("/knt/filestore/templateimage/h1.png") no-repeat left top;
 }
 .topmenu {
 	height: 27px;
-	background: url("/knt/filestore/pollimage/topmenu.png") no-repeat left top;
+	background: url("/knt/filestore/templateimage/topmenu.png") no-repeat left top;
 	text-align: right;
 	padding: 35px 27px 0 0;
 }
@@ -82,7 +82,7 @@ h2 {
 	float: right;
 	width: 105px;
 	height: 22px;
-	background: #A3BDE5 url("/knt/filestore/pollimage/roll.png") no-repeat left top;
+	background: #A3BDE5 url("/knt/filestore/templateimage/roll.png") no-repeat left top;
 	text-align: center;
 	color: #fff;
 	text-decoration: none;
@@ -96,7 +96,7 @@ h2 {
 	height: auto;
 }
 .topmenu li a:hover {
-	background: #83A6DC url("/knt/filestore/pollimage/roll.png") no-repeat 0 -27px;
+	background: #83A6DC url("/knt/filestore/templateimage/roll.png") no-repeat 0 -27px;
 }
 .main {
 	width: 706px;
@@ -167,7 +167,7 @@ h2 {
 	padding: 5px 0;
 }
 .greybox-background {
-	background: url("/knt/filestore/pollimage/gbback.jpg") repeat-y left top;
+	background: url("/knt/filestore/templateimage/gbback.jpg") repeat-y left top;
 	width: 100%;
 	line-height: 170%;
 }
@@ -263,7 +263,7 @@ fieldset>#send {
 	font-size: 0px;
 	line-height: 0px;
 	height: 18px;
-	background: url("/knt/filestore/pollimage/footer.png") no-repeat left top;
+	background: url("/knt/filestore/templateimage/footer.png") no-repeat left top;
 	margin-left: 105px;
 }
 .cleaner {
