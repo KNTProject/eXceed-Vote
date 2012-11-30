@@ -10,8 +10,8 @@ import java.util.Set;
  */
 public class Team {
 
-	int tid;
-	String name;
+	private int tid;
+	private String name;
 	private Set<Poll> polls = new HashSet<Poll>(0);
 
 	

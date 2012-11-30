@@ -7,7 +7,6 @@ import="knt.exceedvote.system.UserSession,org.joda.time.DateTime,java.sql.Blob,j
             <%
 	UserSession user = (UserSession) session.getAttribute("user");
 	if (user == null) {
-		out.println("empty");
 		response.sendRedirect("/knt/jsp/login.jsp");
 	} else {
 %>

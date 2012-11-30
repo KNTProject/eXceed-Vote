@@ -31,9 +31,10 @@ public class Poll {
 	private Set<Team> teams = new HashSet<Team>(0);
 
 	public Poll() { }
-	public Poll(String name, String description){
+	public Poll(String name, String description, String image){
 		this.name = name;
 		this.description = description;
+		this.image = image;
 	}
 	
 	

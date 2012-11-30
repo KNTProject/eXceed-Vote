@@ -16,14 +16,19 @@
 </head>
 <body>
 
- <form name="addpoll" action="addpoll" method="POST">
- <input type="hidden" name="todo" value="addpoll">
+    <form method="post" action="UploadServlet"
+        enctype="multipart/form-data">
  
-Question (header): <input type="text" name="name" /> <br><br>
+Question (header): <input type="text" name="pname" > <br><br>
 Description:
  <textarea name="description" cols="25" rows="5">
 Enter your description here...
 </textarea><br>
+
+        Select file to upload: <input type="file" name="dataFile"
+            id="fileChooser" /><br />
+
+
 <input type="submit" value="Submit" />
 
 </form>

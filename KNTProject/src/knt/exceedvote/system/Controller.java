@@ -37,6 +37,11 @@ public class Controller extends HttpServlet {
    private VoteDAO voteDao;
    private PollDAO pollDao;
 
+   @Override
+   public void doGet(HttpServletRequest request, HttpServletResponse response)
+		    throws IOException, ServletException {
+	  // response.sendRedirect(getServletName());
+   }
  
    /**
     * Main method in this class. It handles in- and output to webpages
@@ -59,6 +64,8 @@ public class Controller extends HttpServlet {
       HttpSession session = request.getSession(true);
       System.out.println(todo);
       if (todo == null){
+          System.out.println("No todo found!");
+
     	  nextPage = "/knt/jsp/login.jsp";
     	  response.sendRedirect(nextPage);
     	 return;
@@ -236,24 +243,8 @@ public class Controller extends HttpServlet {
     	  response.sendRedirect(nextPage);
           return;
       }
-      if (todo.equals("addpoll")){
-    	  System.out.println("im here");
-    	String pname = request.getParameter("name");
-		String description = request.getParameter("description");
-    		  
-    		if(pollDao.addPoll(new Poll(pname, description))) {
-    	       	nextPage = "addteam.jsp";
-    	         response.sendRedirect(nextPage);
-    	         return;	
-    		} else {
-	       	nextPage = "addpoll.jsp";
-   	         response.sendRedirect(nextPage);
-   	         return;	
-    		}
 
-    	  
-      }
-      System.out.println("im bad");
+      System.out.println("No action found!");
        	nextPage = "login.jsp";
          response.sendRedirect(nextPage);
          return;
