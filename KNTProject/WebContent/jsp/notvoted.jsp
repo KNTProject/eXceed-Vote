@@ -140,7 +140,7 @@ function countdown(yr,m,d,hr,min){
     <meta name="author" content="www.studio7designs.com" />
     <meta name="robots" content="all, follow" />
     <meta name="googlebot" content="index, follow, snippet, archive" />
-    <link rel="stylesheet" href="./stylesheets/screen.css" type="text/css"  media="screen, projection" />
+    <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -163,12 +163,11 @@ DateTime cd = user.getCountdown();
         <li>
         <a href="contact.html" onfocus="blur()">Contact</a></li>       
         <li>
-        <a href="project.html" onfocus="blur()">Projects</a></li>
-        <li>
-        <a href="index.html" onfocus="blur()">Main</a></li>
-       	<li><a href="notvoted.jsp">Not yet voted</a></li>
-		<li><a href="voted.jsp">Already voted</a></li>        
-		<li><a href="votemenu.jsp">All</a></li>        
+        <a href="project.html" onfocus="blur()">Teams</a></li>
+       
+	<li><a href="notvoted.jsp">Not yet voted</a></li>
+	<li><a href="voted.jsp">Already voted</a></li>        
+	<li><a href="votemenu.jsp">Main</a></li>        
 	 </ul>
         
 
@@ -184,7 +183,7 @@ DateTime cd = user.getCountdown();
 		
 			<div class="bluebox">
           <a href="#" class="big">
-            <img src="/knt/jsp/imagestore/pollimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/filestore/pollimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">

@@ -166,12 +166,10 @@ function countdown(yr,m,d,hr,min){
         <a href="contact.html" onfocus="blur()">Contact</a></li>       
         <li>
         <a href="project.html" onfocus="blur()">Teams</a></li>
-        <li>
-        <a href="votemenu.jsp" onfocus="blur()">Main</a></li>
        
 	<li><a href="notvoted.jsp">Not yet voted</a></li>
 	<li><a href="voted.jsp">Already voted</a></li>        
-	<li><a href="votemenu.jsp">All</a></li>        
+	<li><a href="votemenu.jsp">Main</a></li>        
 	 </ul>
 
 		<div class="main">
@@ -187,7 +185,7 @@ function countdown(yr,m,d,hr,min){
 		
 			<div class="bluebox">
           <a href="#" class="big">
-            <img src="/knt/filestore/menuimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/filestore/pollimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">

@@ -166,15 +166,17 @@ function countdown(yr,m,d,hr,min){
         <li>
         <a href="contact.html" onfocus="blur()">Contact</a></li>       
         <li>
-        <a href="project.html" onfocus="blur()">Projects</a></li>
-        <li>
-        <a href="votemenu.jsp" onfocus="blur()">Main</a></li>
-      </ul>
+        <a href="project.html" onfocus="blur()">Teams</a></li>
+       
+	<li><a href="notvoted.jsp">Not yet voted</a></li>
+	<li><a href="voted.jsp">Already voted</a></li>        
+	<li><a href="votemenu.jsp">Main</a></li>        
+	 </ul>
       
       <div class="main">
 		<div class="bluebox">
           <a href="#" class="big">
-            <img src="/knt/filestore/menuimage/<%=poll.getImage()%>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/filestore/pollimage/<%=poll.getImage()%>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <h1><font size = "10"><%=poll.getName()%></font></h1>
 

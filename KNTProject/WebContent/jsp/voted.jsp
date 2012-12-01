@@ -133,6 +133,8 @@ function countdown(yr,m,d,hr,min){
 
 
 <meta http-equiv="Content-Type" content="text/html; 	charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="/knt/filestore/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
     <meta http-equiv="Content-Language" content="en" />
     <meta http-equiv="imagetoolbar" content="no" />
     <meta name="keywords" content="" />
@@ -140,7 +142,7 @@ function countdown(yr,m,d,hr,min){
     <meta name="author" content="www.studio7designs.com" />
     <meta name="robots" content="all, follow" />
     <meta name="googlebot" content="index, follow, snippet, archive" />
-    <link rel="stylesheet" href="./stylesheets/screen.css" type="text/css"  media="screen, projection" />
+    <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -161,16 +163,15 @@ function countdown(yr,m,d,hr,min){
           <span>
           </span></a></h3>
 		<ul class="topmenu">
+        <ul class="topmenu">
         <li>
         <a href="contact.html" onfocus="blur()">Contact</a></li>       
         <li>
-        <a href="project.html" onfocus="blur()">Projects</a></li>
-        <li>
-        <a href="index.html" onfocus="blur()">Main</a></li>
-        
-       	<li><a href="notvoted.jsp">Not yet voted</a></li>
-		<li><a href="voted.jsp">Already voted</a></li>        
-		<li><a href="votemenu.jsp">All</a></li>        
+        <a href="project.html" onfocus="blur()">Teams</a></li>
+       
+	<li><a href="notvoted.jsp">Not yet voted</a></li>
+	<li><a href="voted.jsp">Already voted</a></li>        
+	<li><a href="votemenu.jsp">Main</a></li>        
 	 </ul>
         
 
@@ -186,7 +187,7 @@ function countdown(yr,m,d,hr,min){
 		
 			<div class="bluebox">
           <a href="#" class="big">
-            <img src="/knt/filestore/pollimage/<%= p.getImage() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+            <img src="/knt/filestore/pollimage/<%=p.getImage()%>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
             <form name="pollchoose" action="pollchoose" method="POST">
 		         <input type="hidden" name="todo" value="pollchoose">
@@ -199,8 +200,10 @@ function countdown(yr,m,d,hr,min){
             
                  <form name="delete" action="delete" method="POST">
 		         <input type="hidden" name="todo" value="delete">
-				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">				
-      			<input type="submit" value="Delete">
+				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">
+      			<div style="margin-top:10%">
+        			<input type="submit" class="btn btn-danger"  style="width: 250px;" value="Delete"/>
+        		</div>
         		 
      		</form>
             
