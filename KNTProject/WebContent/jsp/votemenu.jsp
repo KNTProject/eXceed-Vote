@@ -144,7 +144,7 @@ function countdown(yr,m,d,hr,min){
     <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>eXceed Vote</title>
 </head>
 <%
 
@@ -167,7 +167,7 @@ function countdown(yr,m,d,hr,min){
         <li>
         <a href="project.html" onfocus="blur()">Teams</a></li>
         <li>
-        <a href="index.html" onfocus="blur()">Main</a></li>
+        <a href="votemenu.jsp" onfocus="blur()">Main</a></li>
        
 	<li><a href="notvoted.jsp">Not yet voted</a></li>
 	<li><a href="voted.jsp">Already voted</a></li>        
