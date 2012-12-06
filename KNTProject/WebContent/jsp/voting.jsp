@@ -192,7 +192,8 @@ while(teams.hasNext()){
 	%>
 	
 		<div style="margin-top:10%">
-					<input type="submit" name="team" id="<%=team.getTid()%>" onclick="confirms()" class="btn btn-danger" value="<%=team.getTid()%>"/> 
+					<input type="hidden" name="team" value="<%=team.getTid()%>">
+					<input type="submit" name="vote" id="<%=team.getTid()%>" onclick="confirms()" class="btn btn-danger" value="vote"/> 
 					<input type="button" id="<%=team.getTid()%>" class="btn btn-info"  style="width: 250px;" onClick="location.href='project.html'" value="<%=team.getName()%>"/>
 			   </div>
     
