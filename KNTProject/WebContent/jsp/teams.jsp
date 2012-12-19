@@ -1,6 +1,7 @@
-<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl"%>
-<%@page import="knt.exceedvote.dao.*" import="knt.exceedvote.model.Poll" import="java.util.List" 
-import="knt.exceedvote.system.UserSession" import="org.joda.time.DateTime"%>
+<%@page import="knt.exceedvote.dao.hibernate.DaoFactoryImpl,knt.exceedvote.dao.*,knt.exceedvote.model.Team,java.util.List"
+import="knt.exceedvote.system.UserSession,org.joda.time.DateTime,java.sql.Blob,java.io.*"
+
+%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
             <%
@@ -148,9 +149,8 @@ $(function() {
 
 
 
+
 <meta http-equiv="Content-Type" content="text/html; 	charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="/knt/filestore/css/bootstrap.min.css"/>
-	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
     <meta http-equiv="Content-Language" content="en" />
     <meta http-equiv="imagetoolbar" content="no" />
     <meta name="keywords" content="" />
@@ -161,13 +161,15 @@ $(function() {
     <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>eXceed Vote</title>
 </head>
 <%
 
 	DateTime cd = user.getCountdown();
 %>
 <body onload="countdown(<%=cd.getYear() %>,<%= cd.getMonthOfYear() %>,<%=cd.getDayOfMonth() %>,<%=cd.getHourOfDay() %>,<%=cd.getMinuteOfHour()%>)">
+
+
 
 
 	<div class="page">
@@ -182,52 +184,42 @@ $(function() {
       </div>
 	
       <h3 class="header">
+      
+      
         <a href="#" title="Home">
           eXceed Camp#9
          
           <span>
           </span></a></h3>
-        <ul class="topmenu">
+		<ul class="topmenu">
         <li><a href="contact.jsp" onfocus="blur()"><div class="contact">Contact</div></a></li>       
         <li><a href="teams.jsp" onfocus="blur()"><div class="team">Teams</div></a></li>
 		<li><a href="notvoted.jsp"><div class="nvoted">Not yet voted</div></a></li>
 		<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
-		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>     
+		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        
 	 </ul>
-        
-
 		<div class="main">
 			<% 
 
 			
 
-			for (Poll p : user.getVoted()) {
-			
+			//for (Poll p : user.getAllPolls()) {
+			for(Team t : user.getAllTeams()){
+
 			%>
 			
 		
 			<div class="bluebox">
-          <a href="#" class="big">
-            <img src="/knt/filestore/pollimage/<%=p.getImage()%>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
+          <a href="javascript:newWin('/knt/filestore/teamimage/<%= t.getImage1() %>', 'Bigger Image', '737', '599')" class="big">
+            <img src="/knt/filestore/teamimage/<%= t.getImage1() %>" width="288" height="224" alt="Sample Photo" title="Sample Photo" /></a>
           <div class="right">
-            <form name="pollchoose" action="pollchoose" method="POST">
-		         <input type="hidden" name="todo" value="pollchoose">
-				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">				
-        		 <a href="javascript:;" onclick="parentNode.submit();"><h1><font size="10"><%=p.getName() %></font></h1></a>
-        		 
-     		</form>
-            <p>
-            <%=p.getDescription() %> </p>
-            
-                 <form name="delete" action="delete" method="POST">
-		         <input type="hidden" name="todo" value="delete">
-				 <input type="hidden" name="pollid" value="<%=p.getPid()%>">
-      			<div style="margin-top:10%">
-        			<input type="submit" class="btn btn-danger"  style="width: 250px;" value="Delete"/>
-        		</div>
-        		 
-     		</form>
-            
+          <h1><font size="4"><%=t.getName() %></font></h1>
+          
+          <a href="javascript:newWin('/knt/filestore/teamimage/<%= t.getImage2() %>', 'Bigger Image', '737', '599')" class="small1">
+              <img src="/knt/filestore/teamimage/<%= t.getImage2() %>" width="149" height="109" alt="Sample Photo" title="Sample Photo" /></a>
+            <a href="javascript:newWin('/knt/filestore/teamimage/<%= t.getImage3() %>', 'Bigger Image', '737', '599')" class="small2">
+              <img src="/knt/filestore/teamimage/<%= t.getImage3() %>" width="149" height="109" alt="Sample Photo" title="Sample Photo" /></a>
+          
           </div>
           <!-- /right-->
           <div class="cleaner">
@@ -270,6 +262,11 @@ $(function() {
         <td align="center" ><div class="title" ></div></td>
     </tr>
 </table>
+
+<script type="text/javascript">
+	function newWin(url,name, width, height) { 
+	window.open(url,name,'scrollbars=yes,resizable=yes, width=' + width + ',height='+height);
+	}</script>
 
 </body>
 </html>

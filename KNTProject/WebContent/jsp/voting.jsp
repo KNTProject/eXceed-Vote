@@ -189,8 +189,8 @@ $(function() {
           <span>
           </span></a></h3>
       <ul class="topmenu">
-        <li><a href="contact.html" onfocus="blur()"><div class="contact">Contact</div></a></li>       
-        <li><a href="project.html" onfocus="blur()"><div class="team">Teams</div></a></li>
+        <li><a href="contact.jsp" onfocus="blur()"><div class="contact">Contact</div></a></li>       
+        <li><a href="teams.jsp" onfocus="blur()"><div class="team">Teams</div></a></li>
 		<li><a href="notvoted.jsp"><div class="nvoted">Not yet voted</div></a></li>
 		<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
 		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        

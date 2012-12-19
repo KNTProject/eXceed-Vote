@@ -161,7 +161,7 @@ $(function() {
     <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<div class="title"><title>eXceed Vote</title></div>
+<title>eXceed Vote</title>
 </head>
 <%
 
@@ -192,8 +192,8 @@ $(function() {
           <span>
           </span></a></h3>
 		<ul class="topmenu">
-        <li><a href="contact.html" onfocus="blur()"><div class="contact">Contact</div></a></li>       
-        <li><a href="project.html" onfocus="blur()"><div class="team">Teams</div></a></li>
+        <li><a href="contact.jsp" onfocus="blur()"><div class="contact">Contact</div></a></li>       
+        <li><a href="teams.jsp" onfocus="blur()"><div class="team">Teams</div></a></li>
 		<li><a href="notvoted.jsp"><div class="nvoted">Not yet voted</div></a></li>
 		<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
 		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        

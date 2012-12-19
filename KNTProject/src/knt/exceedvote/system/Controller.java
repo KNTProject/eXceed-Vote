@@ -15,6 +15,7 @@ import com.sun.media.sound.AlawCodec;
 
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollDAO;
+import knt.exceedvote.dao.TeamDAO;
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
@@ -36,6 +37,7 @@ public class Controller extends HttpServlet {
    private UserDAO userDao;
    private VoteDAO voteDao;
    private PollDAO pollDao;
+   private TeamDAO teamDao;
 
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +59,7 @@ public class Controller extends HttpServlet {
 		userDao = DaoFactory.getInstance("hibernate").getUserDao();
 		voteDao = DaoFactory.getInstance("hibernate").getVoteDao();
 		pollDao = DaoFactory.getInstance("hibernate").getPollDao();
+		teamDao = DaoFactory.getInstance("hibernate").getTeamDao();
  
       // For dispatching the next Page
       String nextPage = "";
@@ -75,7 +78,8 @@ public class Controller extends HttpServlet {
       if (todo.equals("lang")){
     	  UserSession userSession = (UserSession) session.getAttribute("user");
     	  userSession.setLanguage(request.getParameter("lang"));
-		   nextPage = "/knt/jsp/votemenu.jsp";
+		   //nextPage = "/knt/jsp/votemenu.jsp";
+    	  nextPage = "#";
 		  response.sendRedirect(nextPage);
 		  return;
       }
@@ -124,10 +128,11 @@ public class Controller extends HttpServlet {
     	         response.sendRedirect(nextPage);
     	         return;
     	  	} else {
-    	  		
+    	  
     	  userobject.setVoted(pollDao.getVoted(userObj));
     	  userobject.setNotVotedYet(pollDao.getNotVotedYet(userObj));
     	  userobject.setAllPolls(pollDao.getAll());
+    	  userobject.setAllTeams(teamDao.getTeams());
 		   DateTime countdown = Countdown.getDate();
 		   if (countdown != null) userobject.setCountdown(countdown);
 		   else userobject.setCountdown(new DateTime(2099, 01, 01, 0, 0));

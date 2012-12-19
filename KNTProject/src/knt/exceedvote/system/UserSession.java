@@ -16,6 +16,7 @@ public class UserSession {
 	List<Poll> notVotedYet;
 	List<Poll> voted;
 	List<Poll> allPolls;
+	List<Team> allTeams;
 	DateTime countdown;
 	String language;
 	
@@ -31,6 +32,14 @@ public class UserSession {
 	}
 
 	
+	public List<Team> getAllTeams() {
+		return allTeams;
+	}
+
+	public void setAllTeams(List<Team> allTeams) {
+		this.allTeams = allTeams;
+	}
+
 	public DateTime getCountdown() {
 		return countdown;
 	}
