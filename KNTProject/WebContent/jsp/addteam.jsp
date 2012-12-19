@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="knt.exceedvote.system.UserSession"%>
-    <%
+        <%
 	UserSession user = (UserSession) session.getAttribute("user");
 	if (user == null) {
 		response.sendRedirect("/knt/jsp/login.jsp");
@@ -15,11 +15,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="addpoll.jsp">Add Poll</a><br>
-<a href="addteam.jsp">Add Team</a><br>
-<a href="addteampoll.jsp">Add Team to Poll</a><br>
-<a href="deleteteam.jsp">Delete Team</a><br>
+
+    <form method="post" action="UploadTeamServlet"
+        enctype="multipart/form-data">
+ 
+Team Name: <input type="text" name="tname" > <br><br>
+          Select file to upload: <input type="file" name="dataFile"
+            id="fileChooser" /><br />
+            Select file to upload: <input type="file" name="dataFile"
+            id="fileChooser" /><br />
+            Select file to upload: <input type="file" name="dataFile"
+            id="fileChooser" /><br />
+<input type="submit" value="Submit" />
+
+</form>
+    <h2>${requestScope.message}</h2>
 </body>
 </html>
-
 <% } %>
