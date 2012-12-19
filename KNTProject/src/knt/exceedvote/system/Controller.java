@@ -15,7 +15,6 @@ import com.sun.media.sound.AlawCodec;
 
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.PollDAO;
-import knt.exceedvote.dao.TeamDAO;
 import knt.exceedvote.dao.UserDAO;
 import knt.exceedvote.dao.VoteDAO;
 import knt.exceedvote.dao.hibernate.DaoFactoryImpl;
@@ -71,16 +70,8 @@ public class Controller extends HttpServlet {
     	  response.sendRedirect(nextPage);
     	 return;
       }
-      if (todo.equals("delteam")){
-	  int team = Integer.parseInt(request.getParameter("team"));
-	  TeamDAO teamDao = DaoFactory.getInstance("hibernate").getTeamDao();
-	  teamDao.deleteTeam(team);
-	  nextPage = "ecadmin.jsp";
-	  response.sendRedirect(nextPage);
-	  return;  
-      }
       
-      
+      //Handle changing language
       if (todo.equals("lang")){
     	  UserSession userSession = (UserSession) session.getAttribute("user");
     	  userSession.setLanguage(request.getParameter("lang"));

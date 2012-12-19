@@ -172,6 +172,16 @@ $(function() {
 
 
 	<div class="page">
+	
+	<div class="header1">
+	<form name="lang" action="translate" method="POST">
+	<input type="hidden" name="todo" value="lang">
+        <input type="submit" name="lang" value="thai"/>
+      	|
+      	<input type="submit" name="lang" value="english"/>
+      </form>
+      </div>
+	
       <h3 class="header">
         <a href="./index.html" title="Home">
           Best Design

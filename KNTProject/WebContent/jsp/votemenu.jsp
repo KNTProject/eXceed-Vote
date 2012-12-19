@@ -170,16 +170,18 @@ $(function() {
 <body onload="countdown(<%=cd.getYear() %>,<%= cd.getMonthOfYear() %>,<%=cd.getDayOfMonth() %>,<%=cd.getHourOfDay() %>,<%=cd.getMinuteOfHour()%>)">
 
 
-<div class="header1">
-          <form name="lang" action="translate" method="POST">
-		         <input type="hidden" name="todo" value="lang">
-      	<input type="submit" name="lang" value="thai"/>
-      	"|"
-      	<input type="submit" name="lang" value="english"/>
-      	</form>
-      </div>
+
 
 	<div class="page">
+	
+	<div class="header1">
+	<form name="lang" action="translate" method="POST">
+	<input type="hidden" name="todo" value="lang">
+        <input type="submit" name="lang" value="thai"/>
+      	|
+      	<input type="submit" name="lang" value="english"/>
+      </form>
+      </div>
 	
       <h3 class="header">
       

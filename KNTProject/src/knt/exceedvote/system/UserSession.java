@@ -20,7 +20,7 @@ public class UserSession {
 	String language;
 	
 	public UserSession() {
-		this.setLanguage("thai");
+		this.setLanguage("english");
 	}
 	
 	public List<Poll> getAllPolls() {
