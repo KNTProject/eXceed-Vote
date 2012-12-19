@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
@@ -65,6 +66,35 @@ public class TeamDAOImpl implements TeamDAO {
 			throws HibernateException {
 		Session session =DaoFactory.getInstance("hibernate").getSessionFactory().openSession();
 		return session;
+	}
+
+	@Override
+	public boolean addTeam(Team team) {
+		Session session = null;
+
+		  try{
+		session = getSession();
+		
+		
+		Transaction transaction = null;
+		transaction = session.beginTransaction();
+		session.save(team);
+		transaction.commit();
+		return true;
+		
+		
+		  }catch(Exception e){
+			  Logger log = Logger.getLogger( PollDAOImpl.class );
+			  log.error(e);
+		  return false;
+		  
+		  }finally{
+		  // Actual contact insertion will happen at this step
+		  session.flush();
+		  session.close();
+		  
+		  }
+		
 	}
 
 	

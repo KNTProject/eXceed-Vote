@@ -35,6 +35,7 @@ public abstract class DaoFactory {
 	public abstract PollDAO getPollDao();
 	public abstract TeamDAO getTeamDao();
 	public abstract VoteDAO getVoteDao();
+	public abstract RankingDAO getRankingDao();
 	
 	public abstract SessionFactory getSessionFactory();
 }
