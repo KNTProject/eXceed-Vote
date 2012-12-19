@@ -170,23 +170,31 @@ $(function() {
 <body onload="countdown(<%=cd.getYear() %>,<%= cd.getMonthOfYear() %>,<%=cd.getDayOfMonth() %>,<%=cd.getHourOfDay() %>,<%=cd.getMinuteOfHour()%>)">
 
 
+<div class="header1">
+          <form name="lang" action="translate" method="POST">
+		         <input type="hidden" name="todo" value="lang">
+      	<input type="submit" name="lang" value="thai"/>
+      	"|"
+      	<input type="submit" name="lang" value="english"/>
+      	</form>
+      </div>
+
 	<div class="page">
 	
       <h3 class="header">
+      
+      
         <a href="#" title="Home">
           eXceed Camp#9
          
           <span>
           </span></a></h3>
 		<ul class="topmenu">
-        <li>
-        <a href="contact.html" onfocus="blur()">Contact</a></li>       
-        <li>
-        <a href="project.html" onfocus="blur()">Teams</a></li>
-       
-	<li><a href="notvoted.jsp">Not yet voted</a></li>
-	<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
-	<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        
+        <li><a href="contact.html" onfocus="blur()"><div class="contact">Contact</div></a></li>       
+        <li><a href="project.html" onfocus="blur()"><div class="team">Teams</div></a></li>
+		<li><a href="notvoted.jsp"><div class="nvoted">Not yet voted</div></a></li>
+		<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
+		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        
 	 </ul>
 		<div class="main">
 			<% 
@@ -254,6 +262,7 @@ $(function() {
         <td align="center" ><div class="title" ></div></td>
     </tr>
 </table>
+
 
 </body>
 </html>

@@ -70,6 +70,15 @@ public class Controller extends HttpServlet {
     	  response.sendRedirect(nextPage);
     	 return;
       }
+      if (todo.equals("lang")){
+    	  UserSession userSession = (UserSession) session.getAttribute("user");
+    	  userSession.setLanguage(request.getParameter("lang"));
+		   nextPage = "/knt/jsp/votemenu.jsp";
+		  response.sendRedirect(nextPage);
+		  return;
+      }
+      
+      
       //Handle login and authentification to the website
       if (todo.equals("login")){
     	 
