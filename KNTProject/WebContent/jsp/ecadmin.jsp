@@ -16,7 +16,8 @@
 </head>
 <body>
 <a href="addpoll.jsp">Add Poll</a><br>
-<a href="addteam.jsp">Add Team</a>
+<a href="addteam.jsp">Add Team</a><br>
+<a href="deleteteam.jsp">Delete Team</a><br>
 
 </body>
 </html>

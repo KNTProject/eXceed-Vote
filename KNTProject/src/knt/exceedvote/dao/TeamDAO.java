@@ -8,5 +8,5 @@ public interface TeamDAO {
 
 	public List<Team> getTeams();
 	public boolean addTeam(Team team);
-
+	public void deleteTeam(int tid);
 }

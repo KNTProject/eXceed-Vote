@@ -4,10 +4,12 @@ import java.util.List;
 
 import knt.exceedvote.dao.DaoFactory;
 import knt.exceedvote.dao.TeamDAO;
+import knt.exceedvote.model.Login;
 import knt.exceedvote.model.Team;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -96,7 +98,30 @@ public class TeamDAOImpl implements TeamDAO {
 		  }
 		
 	}
-
 	
-
+	
+	public void deleteTeam(int tid){
+		
+		  Session session = getSession();
+		  try{
+			  Transaction transaction = session.beginTransaction();
+			  String hql = "delete from Team where tid= :tid";
+			  Query query = session.createQuery(hql);
+			  query.setInteger("tid", tid);
+			  query.executeUpdate();
+			  transaction.commit();
+		
+	  }catch(Exception e){
+		  
+	  Logger log = Logger.getLogger( VoteDAOImpl.class );
+	  log.error(e);	  
+	  
+	  }finally{
+	  // Clean connection
+	  session.flush();
+	  // Close connection
+	  session.close();
+	  
+	  }
+	}
 }
