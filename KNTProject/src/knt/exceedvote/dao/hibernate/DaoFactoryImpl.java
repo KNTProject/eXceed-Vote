@@ -11,19 +11,15 @@ import org.hibernate.cfg.Configuration;
  *
  */
 public class DaoFactoryImpl extends DaoFactory{
-	private static DaoFactoryImpl factory; // the real instance
 
 	private UserDAO userDao = null;
 	private VoteDAO voteDao = null;
 	private TeamDAO teamDao = null;
 	private PollDAO pollDao = null;
+	private RankingDAO rankingDao = null;
 
 	
 	
-	public static DaoFactoryImpl getInstance() {
-
-		return null;
-	}
 	
 	/**
 	 * Get an instance of the User DAO object
@@ -60,6 +56,12 @@ public class DaoFactoryImpl extends DaoFactory{
 	public void init() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public RankingDAO getRankingDao() {
+		if (rankingDao == null) rankingDao = new RankingDAOImpl();
+		return rankingDao;
 	}
 }
 
