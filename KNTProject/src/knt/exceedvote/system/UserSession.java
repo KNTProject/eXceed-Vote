@@ -17,6 +17,11 @@ public class UserSession {
 	List<Poll> voted;
 	List<Poll> allPolls;
 	DateTime countdown;
+	String language;
+	
+	public UserSession() {
+		this.setLanguage("thai");
+	}
 	
 	public List<Poll> getAllPolls() {
 		return allPolls;
@@ -51,6 +56,12 @@ public class UserSession {
 	}
 	public void setUser(Login user) {
 		this.user = user;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	

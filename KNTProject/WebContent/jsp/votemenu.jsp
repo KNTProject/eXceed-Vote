@@ -126,6 +126,23 @@ function countdown(yr,m,d,hr,min){
 
 
 
+<script src="lang/jquery-1.8.3.js"></script>
+<script type="text/javascript" language="javascript">
+ 
+$(function() {
+    var language = '<%=user.getLanguage()%>';
+    $.ajax({
+        url: 'lang/languages.xml',
+        success: function(xml) {
+            $(xml).find('translation').each(function(){
+                var id = $(this).attr('id');
+                var text = $(this).find(language).text();
+                $("." + id).html(text);
+            });
+        }
+    });
+});
+</script>
 
 
 
@@ -144,7 +161,7 @@ function countdown(yr,m,d,hr,min){
     <link rel="stylesheet" href="/knt/filestore/css/screen.css" type="text/css"  media="screen, projection" />
     <link rel="shortcut icon" href="favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>eXceed Vote</title>
+<div class="title"><title>eXceed Vote</title></div>
 </head>
 <%
 
@@ -168,10 +185,9 @@ function countdown(yr,m,d,hr,min){
         <a href="project.html" onfocus="blur()">Teams</a></li>
        
 	<li><a href="notvoted.jsp">Not yet voted</a></li>
-	<li><a href="voted.jsp">Already voted</a></li>        
-	<li><a href="votemenu.jsp">Main</a></li>        
+	<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
+	<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>        
 	 </ul>
-
 		<div class="main">
 			<% 
 
