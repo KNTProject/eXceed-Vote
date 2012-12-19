@@ -7,5 +7,6 @@ import knt.exceedvote.model.Team;
 public interface TeamDAO {
 
 	public List<Team> getTeams();
+	public boolean addTeam(Team team);
 
 }

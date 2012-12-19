@@ -15,6 +15,18 @@
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/jsp/UploadServlet</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>UploadTeamServlet</display-name>
+    <servlet-name>UploadTeamServlet</servlet-name>
+    <servlet-class>knt.exceedvote.system.UploadTeamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadTeamServlet</servlet-name>
+    <url-pattern>/jsp/UploadTeamServlet</url-pattern>
+  </servlet-mapping>
+  
 	
     <servlet>
         <servlet-name>default</servlet-name>

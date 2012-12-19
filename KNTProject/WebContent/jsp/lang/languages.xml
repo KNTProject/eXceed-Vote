@@ -2,10 +2,26 @@
 <translations>
     <translation id="menu">
         <english>Menu</english>
-        <thai>THAI</thai>
+        <thai>เมนู</thai>
     </translation>
     <translation id="avoted">
         <english>Already voted</english>
-        <thai>THAI</thai>
+        <thai>โหวตแล้ว</thai>
+    </translation>
+    <translation id="nvoted">
+        <english>Not yet voted</english>
+        <thai>ยังไม่ได้โหวตแล้ว</thai>
+    </translation>
+    <translation id="team">
+        <english>Teams</english>
+        <thai>ทีม</thai>
+    </translation>
+    <translation id="contact">
+        <english>Contact</english>
+        <thai>ติดต่อ</thai>
+    </translation>
+    <translation id="btn btn-danger">
+        <english>vote</english>
+        <thai>โหวต</thai>
     </translation>
 </translations>

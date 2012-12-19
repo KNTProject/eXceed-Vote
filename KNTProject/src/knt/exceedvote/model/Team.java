@@ -17,6 +17,13 @@ public class Team {
 	private String image3;
 	private Set<Poll> polls = new HashSet<Poll>(0);
 
+	public Team() { }
+	public Team(String name, String image1, String image2, String image3){
+		this.name = name;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.image3 = image3;
+	}
 	
 	public Set<Poll> getPolls() {
 		return polls;

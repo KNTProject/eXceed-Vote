@@ -15,7 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="addpoll.jsp">Add Poll</a>
+<a href="addpoll.jsp">Add Poll</a><br>
+<a href="addteam.jsp">Add Team</a>
 
 </body>
 </html>

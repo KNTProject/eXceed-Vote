@@ -125,7 +125,23 @@ function countdown(yr,m,d,hr,min){
 
 
 
-
+<script src="lang/jquery-1.8.3.js"></script>
+<script type="text/javascript" language="javascript">
+ 
+$(function() {
+    var language = '<%=user.getLanguage()%>';
+    $.ajax({
+        url: 'lang/languages.xml',
+        success: function(xml) {
+            $(xml).find('translation').each(function(){
+                var id = $(this).attr('id');
+                var text = $(this).find(language).text();
+                $("." + id).html(text);
+            });
+        }
+    });
+});
+</script>
 
 
 
@@ -160,14 +176,11 @@ DateTime cd = user.getCountdown();
           <span>
           </span></a></h3>
 		<ul class="topmenu">
-        <li>
-        <a href="contact.html" onfocus="blur()">Contact</a></li>       
-        <li>
-        <a href="project.html" onfocus="blur()">Teams</a></li>
-       
-	<li><a href="notvoted.jsp">Not yet voted</a></li>
-	<li><a href="voted.jsp">Already voted</a></li>        
-	<li><a href="votemenu.jsp">Main</a></li>        
+        <li><a href="contact.html" onfocus="blur()"><div class="contact">Contact</div></a></li>       
+        <li><a href="project.html" onfocus="blur()"><div class="team">Teams</div></a></li>
+		<li><a href="notvoted.jsp"><div class="nvoted">Not yet voted</div></a></li>
+		<li><a href="voted.jsp"><div class="avoted">Already voted</div></a></li>        
+		<li><a href="votemenu.jsp"><div class="menu">Main</div></a></div></li>      
 	 </ul>
         
 
