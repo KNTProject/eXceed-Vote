@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+    <translation id="menu">
+        <english>Menu</english>
+        <thai>THAI</thai>
+    </translation>
+    <translation id="avoted">
+        <english>Already voted</english>
+        <thai>THAI</thai>
+    </translation>
+</translations>
